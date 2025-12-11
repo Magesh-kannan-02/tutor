@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Caption,
@@ -5,15 +6,27 @@ import {
   Chip,
   CircularProgress,
   CircularTimer,
+  Drawer,
   Featurecard,
   Iconcard,
   Infocard,
+  Inputprompt,
   Levelcard,
   ProgressBar,
   Skillcard,
+  Wordscard,
 } from "@/components";
+import { Playcard } from "@/components/ui/playcard/playcard";
+import { Avatarcard } from "@/components/atoms/avatarcard/avatarcard";
 
 const Home = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false); 
+  const [playing, setPlaying] = useState(false);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+
   return (
     <div className="h-full m-auto w-full bg-black gap-4 p-7 flex-col   justify-center items-center flex">
       <Button
@@ -60,6 +73,72 @@ const Home = () => {
       <CircularTimer duration={20} size={140} strokeWidth={5}  />
       <CircularProgress value={50} />
       <Caption />
+      <Drawer
+        open={drawerOpen}                      
+        onClose={() => setDrawerOpen(false)}   
+        header="Incorrect Verb Form"
+        contentClassname="h-40 flex items-start justify-center"
+        content={
+          <div className="text-center text-lg text-content1-foreground">
+            <span className="text-red-500">I </span>
+            <span className="text-green-500 font-bold">I'm</span> working on it
+          </div>
+        }
+      />
+      <Wordscard
+        icontype="snail"
+        iconName="snail"
+        caption="63 Words — Slow"
+        description="You're doing great! Push your pace slightly to sound more natural and lively."
+      />
+      <Wordscard
+        icontype="arm"
+        iconName="arm"
+        title="Grammar’s got a few tricks up its sleeve 😏"
+        titleClassname="text-lg text-content1-foreground font-bold"
+        caption="Let’s break them down and fix them fast."
+        captionClassname="text-sm text-medium text-secondary-150"
+      />
+      
+      <Playcard
+        title="actually"
+        icontype={playing ? "sound" : "play"} 
+        iconName={playing ? "sound" : "play"}
+        onClick={() => setPlaying(!playing)}   
+      />
+
+    <Inputprompt
+      label="Your Name"
+      placeholder="Enter your name"
+      type="text"
+      value={name}
+      onChange={setName}
+    />
+
+    <Inputprompt
+      label="Password"
+      placeholder="Enter password"
+      type="password"
+      value={password}
+      onChange={setPassword}      
+    />
+
+    <Inputprompt
+      label="Password"
+      placeholder="Enter password"
+      type="password"
+      value={password}
+      onChange={setPassword}
+      confirm
+      confirmValue={confirmPassword}
+      onConfirmChange={setConfirmPassword}
+      showStrength
+      mode="full"     
+    />
+
+    <Avatarcard icontype="avatar" imageClassname="w-[12rem] h-[11rem]" className="w-36 h-36 overflow-hidden"/>
+
+
     </div>
   );
 };

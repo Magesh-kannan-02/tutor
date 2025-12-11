@@ -54,12 +54,19 @@ module.exports = {
         warning: {
           DEFAULT: "#FF9437",
         },
+        success:{
+          DEFAULT: "#51BC51",
+          '100':"#DDE7EE",
+          '200':"#effedd",
+        },
         content1:{
           DEFAULT: "#000000",
           foreground: "#FFFFFF",
           '50':"#78787833"
         },
-
+        content2:{
+          DEFAULT: "#565656"
+        },
 
 
         background: {

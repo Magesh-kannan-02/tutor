@@ -1,7 +1,12 @@
 import { MicrophoneIcon } from "@/assets";
+import { PlayIcon } from "@/assets";
+import { SoundIcon } from "@/assets";
 import femaleImg from "@/assets/images/female.png";
 import StudyImg from "@/assets/images/study.png";
 import BeginnerImg from "@/assets/images/beginner.png";
+import SnailImg from "@/assets/images/snail.png";
+import ArmImg from "@/assets/images/arm.png"
+import AvatarImg from '@/assets/images/avatar.png';
 export type SVGIcon = React.ComponentType<{ fill?: string }>;
 
 export const iconMapping: Record<
@@ -24,5 +29,25 @@ export const iconMapping: Record<
     type: "image",
     icon: BeginnerImg,
     },
+    snail:{
+      type: "image",
+      icon: SnailImg
+    },
+    arm:{
+      type: "image",
+      icon: ArmImg
+    },
+    play:{
+      type: "svg",
+      icon: PlayIcon
+    },
+    sound:{
+      type: "svg",
+      icon: SoundIcon
+    },
+    avatar:{
+      type:'image',
+      icon: AvatarImg
+    }
     
 }

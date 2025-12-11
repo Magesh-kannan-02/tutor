@@ -11,4 +11,7 @@ export { Levelcard } from "./ui/levelcard/levelcard";
 export { Chip } from './atoms/chip/badge';
 export { CircularTimer } from "./ui/timer/timer";
 export { CircularProgress } from "./ui/circularprogressbar/circularprogressbar";
+export { Drawer } from './ui/drawer/drawer';
+export { Wordscard } from './ui/wordscard/wordscard';
+export { Inputprompt } from './ui/inputprompt/inputprompt';
 
