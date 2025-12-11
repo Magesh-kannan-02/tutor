@@ -9,7 +9,7 @@ interface IconcardProps {
   className?: string; // custom class name
   iconName?: string; // icon class name
   textClassName?: string; // text class name
-  handleCardClick?: (item?: any) => void; // card click handler
+  handleCardClick?: () => void; // card click handler
   isactive?: boolean; // active state
 }
 
@@ -26,7 +26,7 @@ export const Iconcard = ({
   return (
     <Card
       id={id}
-      onClick={() => handleCardClick?.(id)}
+      onClick={handleCardClick}
       className={cn(
         "flex items-center gap-[1rem] cursor-pointer justify-center flex-col py-[2rem]",
         className

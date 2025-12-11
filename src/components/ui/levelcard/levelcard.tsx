@@ -5,7 +5,7 @@ import { iconMapping } from "@/utils";
 interface LevelcardProps {
   id?: string; // unique id
   className?: string; // base class name for card
-  handleClick?: (item?: any) => void; // card click handler
+  handleClick?: () => void; // card click handler
   titleclassName?: string; // text class name
   descriptionclassName?: string; // description class name
   title?: string; // title text
@@ -28,7 +28,7 @@ export const Levelcard = ({
   return (
     <Card
       id={id}
-      onClick={() => handleClick?.(id)}
+      onClick={handleClick}
       className={cn("flex items-center p-[1rem] justify-between", className)}
     >
       <div className={cn("flex flex-col gap-[1rem]")}>

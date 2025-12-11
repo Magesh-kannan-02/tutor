@@ -8,7 +8,7 @@ interface FeaturecardProps {
   className?: string; // base class name for card
   icontype?: string; // icon type
   textContent?: string; //  text content
-  handleClick?: (item?: any) => void; // card click handler
+  handleClick?: () => void; // card click handler
   textclassName?: string; // text class name
   iconClassName?: string; // icon class name
   isactive?: boolean; // active state
@@ -50,7 +50,7 @@ export const Featurecard = ({
         },
         className
       )}
-      onClick={() => handleClick?.(id)}
+      onClick={handleClick}
     >
       <div className={cn("flex items-center gap-[1rem]", innerclassName)}>
         {allowStartIcon && (
@@ -83,7 +83,7 @@ export const Featurecard = ({
             "text-primary": isactive,
             [checkboxIndicatorClassName]: isactive,
           })}
-          onClick={() => handleClick?.(id)}
+          onClick={handleClick}
         />
       )}
     </Card>

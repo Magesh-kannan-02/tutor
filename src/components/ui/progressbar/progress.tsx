@@ -22,7 +22,7 @@ export const ProgressBar = (({ id, className, value=0, indicatorClassName, ...re
   >
     <ProgressPrimitive.Indicator
       className={cn(
-        "h-full w-full flex-1 bg-primary-50 transition-all rounded-full",
+        "h-full w-full flex-1 bg-primary-50  rounded-full transition-transform duration-500 ease-in-out",
         indicatorClassName
       )}
       style={{ transform: `translateX(-${100 - (Number(value) || 0)}%)` }}
