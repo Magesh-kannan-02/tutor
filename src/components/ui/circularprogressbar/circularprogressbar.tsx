@@ -24,13 +24,14 @@ export const CircularProgress = ({
   label = "Score",
   valueClassName = "",
   labelClassName = "",
+  ...rest
 }: CircularProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = (value / 100) * circumference;
 
   return (
-    <div id={id} style={{ width: size, height: size, position: "relative" }}>
+    <div id={id} {...rest} style={{ width: size, height: size, position: "relative" }}>
       <svg width={size} height={size}>
         {/* Gradient Definition */}
         <defs>

@@ -2,7 +2,7 @@ import { MicrophoneIcon } from "@/assets";
 import femaleImg from "@/assets/images/female.png";
 import StudyImg from "@/assets/images/study.png";
 import BeginnerImg from "@/assets/images/beginner.png";
-export type SVGIcon = React.ComponentType<{ fill?: string }>;
+export type SVGIcon = React.ComponentType<{ fill?: string ,className?:string}>;
 
 export const iconMapping: Record<
   string,

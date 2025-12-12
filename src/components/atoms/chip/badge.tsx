@@ -33,7 +33,6 @@ interface BadgeProps {
   isactive?: boolean; // active state
   activeClassName?: string; // active class name
   handleClick?: () => void; // click handler
-
 }
 
 export const Chip = ({ className, variant,
@@ -46,12 +45,14 @@ export const Chip = ({ className, variant,
   isactive=false,
   activeClassName='border-none bg-gradient-to-b from-primary to-primary-foreground',
   handleClick,
+  ...rest
+  
 
   }: BadgeProps) => {
   return (
     <div onClick={handleClick} className={cn("",badgeVariants({ variant }),{
       [activeClassName]: isactive,
-    }, className)}  >
+    }, className)}  {...rest} >
       {startContent && <div className={cn("mr-1", startContentClassName)}>{startContent}</div>}
       {text && <span className={cn("!text-body text-content1-foreground",textClassName)}>{text}</span>}
       {endContent && <div className={cn("ml-1", endContentClassName)}>{endContent}</div>}

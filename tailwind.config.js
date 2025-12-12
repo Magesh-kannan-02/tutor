@@ -26,9 +26,13 @@ module.exports = {
         large: "6px", // rounded-large
       },
       fontSize: {
+        body5: [
+          "1.25rem",
+          { lineHeight: "1", letterSpacing: "0%", fontWeight: "500" },
+        ],
         body: [
           "1rem",
-          { lineHeight: "1", letterSpacing: "0%", fontWeight: "500" },
+          { lineHeight: "1", letterSpacing: "0%", fontWeight: "700" },
         ],
       },
     },
