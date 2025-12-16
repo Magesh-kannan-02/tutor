@@ -2,40 +2,75 @@
 const { createThemes } = require("tw-colors"); // for theme switching
 
 module.exports = {
-  darkMode: "class",
+  darkMode: ["class", "class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      borderRadius: {
-        lg: "1rem",
-        md: "0.5rem",
-        sm: "0.25rem",
-      },
-      fontFamily: {
-        sans: ["var(--font-dm-sans)"],
-      },
-      fontWeight: {
-        regular: "400",
-        medium: "500",
-        semibold: "600",
-        bold: "700",
-      },
-      borderRadius: {
-        small: "2px", // rounded-small
-        medium: "0.5rem", // rounded-medium
-        large: "6px", // rounded-large
-      },
-      fontSize: {
-        body5: [
-          "1.25rem",
-          { lineHeight: "1", letterSpacing: "0%", fontWeight: "500" },
-        ],
-        body: [
-          "1rem",
-          { lineHeight: "1", letterSpacing: "0%", fontWeight: "700" },
-        ],
-      },
-    },
+  	extend: {
+  		borderRadius: {
+  			small: '2px',
+  			medium: '0.5rem',
+  			large: '6px'
+  		},
+  		fontFamily: {
+  			sans: [
+  				'var(--font-dm-sans)'
+  			]
+  		},
+  		fontWeight: {
+  			regular: '400',
+  			medium: '500',
+  			semibold: '600',
+  			bold: '700'
+  		},
+  		fontSize: {
+  			body5: [
+  				'1.25rem',
+  				{
+  					lineHeight: '1',
+  					letterSpacing: '0%',
+  					fontWeight: '500'
+  				}
+  			],
+  			body: [
+  				'1rem',
+  				{
+  					lineHeight: '1',
+  					letterSpacing: '0%',
+  					fontWeight: '500'
+  				}
+  			],
+  			h6: [
+  				'0.875rem',
+  				{
+  					lineHeight: '1',
+  					letterSpacing: '0%',
+  					fontWeight: '500'
+  				}
+  			]
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
   },
   plugins: [
     require("tailwindcss-animate"),
@@ -52,7 +87,8 @@ module.exports = {
           
           '50':"#A0A0A0",
           '100':"#121212",
-          '150':"#C0C0C0"
+          '150':"#C0C0C0",
+		  '200':"#0A0A0B"
           
         },
         warning: {
@@ -61,7 +97,8 @@ module.exports = {
         content1:{
           DEFAULT: "#000000",
           foreground: "#FFFFFF",
-          '50':"#78787833"
+          '50':"#78787833",
+          '100':"#565656"
         },
 
 

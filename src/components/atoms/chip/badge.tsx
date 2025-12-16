@@ -12,7 +12,7 @@ const badgeVariants = cva(
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
 
-        outline: "text-foreground",
+        outline: "!rounded-[0.625rem] !border-[0.5px] !border-content1-100 gap-2 items-center cursor-pointer justify-center py-[0.625rem] px-[0.75rem] flex w-fit bg-content1-100/25 backdrop-blur-3xl  border-[0.031rem]  border-background-50",
       },
     },
     defaultVariants: {
@@ -33,6 +33,7 @@ interface BadgeProps {
   isactive?: boolean; // active state
   activeClassName?: string; // active class name
   handleClick?: () => void; // click handler
+  allowAnimation?: boolean; // to show the click effects
 }
 
 export const Chip = ({ className, variant,
@@ -45,6 +46,7 @@ export const Chip = ({ className, variant,
   isactive=false,
   activeClassName='border-none bg-gradient-to-b from-primary to-primary-foreground',
   handleClick,
+  allowAnimation=false,
   ...rest
   
 
@@ -52,6 +54,7 @@ export const Chip = ({ className, variant,
   return (
     <div onClick={handleClick} className={cn("",badgeVariants({ variant }),{
       [activeClassName]: isactive,
+      "duration-200 ease-out  active:scale-[0.98] active: active:duration-100":allowAnimation
     }, className)}  {...rest} >
       {startContent && <div className={cn("mr-1", startContentClassName)}>{startContent}</div>}
       {text && <span className={cn("!text-body text-content1-foreground",textClassName)}>{text}</span>}
