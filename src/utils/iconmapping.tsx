@@ -10,6 +10,13 @@ import BeginnerImg from "@/assets/images/beginner.png";
 import SnailImg from "@/assets/images/snail.png";
 import ArmImg from "@/assets/images/arm.png"
 import AvatarImg from '@/assets/images/avatar.png';
+import maleImg from '@/assets/images/male.png';
+import thinkImg from '@/assets/images/think.png';
+import writingImg from '@/assets/images/writing.png';
+import notesImg from '@/assets/images/notes.png';
+import earImg from '@/assets/images/ear.png';
+import mouthImg from '@/assets/images/mouth.png';
+
 export type SVGIcon = React.ComponentType<{ fill?: string ,className?:string}>;
 
 export const iconMapping: Record<
@@ -64,5 +71,29 @@ export const iconMapping: Record<
       type:'svg',
       icon: FluencyIcon
     },
+    male:{
+      type:'image',
+      icon: maleImg
+    },
+    think:{
+      type:'image',
+      icon: thinkImg
+    },
+    mouth:{
+      type:'image',
+      icon: mouthImg
+    },
+    writing:{
+      type:'image',
+      icon: writingImg
+    },
+    ear:{
+      type:'image',
+      icon: earImg
+    },
+    notes:{
+      type:'image',
+      icon: notesImg
+    }
     
 }

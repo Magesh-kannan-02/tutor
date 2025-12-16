@@ -5,5 +5,5 @@ export const ROUTES = {
   NOT_AUTHORIZED: "/not-authorized",
   PLAYGROUND:"/playground",
   SELECT_TEST:"/select-test",
-
+  ONBOARDING:"/onboarding"
 };

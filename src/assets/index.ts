@@ -10,3 +10,4 @@ export { Logo } from './Logo';
 export { PenIcon } from './PenIcon';
 export { VocabularyIcon } from './VocabularyIcon';
 export { FluencyIcon } from './FluencyIcon';
+export { LeftArrowIcon } from './LeftArrowIcon';
