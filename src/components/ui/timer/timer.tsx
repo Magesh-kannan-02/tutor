@@ -28,10 +28,11 @@ export const CircularTimer = ({
   middleBgColor = "#262626",
   innerBgColor = "#3A3A39",
   textClassName,
+  onComplete,
+  ...rest
   
  
    
-  onComplete,
 }: CircularTimerProps) => {
   const baseRadius = (size - strokeWidth) / 2;
 
@@ -63,7 +64,7 @@ export const CircularTimer = ({
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
   return (
-    <div id={id}  style={{ width: size, height: size, position: "relative" }}>
+    <div id={id}  style={{ width: size, height: size, position: "relative" }} {...rest}>
       <svg width={size} height={size}>
 
         {/* OUTER RING */}

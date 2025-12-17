@@ -1,0 +1,22 @@
+import React from "react";
+
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+}
+
+export const CloseIcon = ({ size = 12, color = "white", ...props }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 11 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M10.5 1.0575L9.4425 0L5.25 4.1925L1.0575 0L0 1.0575L4.1925 5.25L0 9.4425L1.0575 10.5L5.25 6.3075L9.4425 10.5L10.5 9.4425L6.3075 5.25L10.5 1.0575Z"
+      fill={color}
+    />
+  </svg>
+);

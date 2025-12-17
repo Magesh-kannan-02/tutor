@@ -11,3 +11,18 @@ body{
   
 
 }
+
+/* Hide scrollbar but keep scrolling */
+html,
+body {
+  overflow-y: auto;
+  scrollbar-width: none;     
+  -ms-overflow-style: none;    
+}
+
+/* Chrome, Safari, Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

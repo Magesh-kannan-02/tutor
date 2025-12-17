@@ -3,7 +3,9 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   NOT_AUTHORIZED: "/not-authorized",
-  PROFILE_DETAILS:"/profile/:id",
+  PLAYGROUND:"/playground",
+  SELECT_TEST:"/select-test",
+
 };
 export const FLOW = [
   {

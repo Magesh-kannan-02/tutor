@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./PrivateRoute";
 import { privateRoutes, publicRoutes } from "@/router/route";
-import NotFound from "@/pages/not-found";
+import {NotFound} from "@/pages";
 
 export const AppRouter = () => {
   return (

@@ -1,10 +1,12 @@
-import Home from "@/pages/home";
-import NotAuthorized from "@/pages/not-authorised";
+import {Home,NotAuthorized,PlayGround,SelectTest} from "@/pages";
+
+
 import { ROUTES } from "@/utils";
 // Public pages
 export const publicRoutes = [
   { path: ROUTES.NOT_AUTHORIZED, element: <NotAuthorized /> },
-  
+  { path: ROUTES.PLAYGROUND, element: <PlayGround /> },
+  { path: ROUTES?.SELECT_TEST, element: <SelectTest /> }, 
 ];
 
 // Protected pages
