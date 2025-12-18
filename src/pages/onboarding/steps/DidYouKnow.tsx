@@ -1,12 +1,14 @@
 import bigGraph from "@/assets/images/bigGraph.png";
 import { Button } from "@/components";
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface DidYouKnowProps {
   onNext?: () => void;
-  value?: number;
 }
 
-export const DidYouKnow = ({onNext,value=7}:DidYouKnowProps) => {
+export const DidYouKnow = ({ onNext }: DidYouKnowProps) => {
+  const { statsValue } = useOnboardingStore();
+
   return (
     <div className="flex flex-col h-full items-center justify-between py-5 px-4">
       {/* Center content */}
@@ -33,9 +35,8 @@ export const DidYouKnow = ({onNext,value=7}:DidYouKnowProps) => {
             backgroundClip: "text",
           }}
         >
-          {value} out of 10
+          {statsValue} out of 10
         </p>
-
 
         {/* Description */}
         <p className="text-xl text-content1-foreground max-w-[16rem] font-semibold mb-3">
@@ -50,12 +51,12 @@ export const DidYouKnow = ({onNext,value=7}:DidYouKnowProps) => {
 
       {/* Continue button */}
       <Button
-          buttonText="Continue"
-          variant="secondary"
-          textClassName="text-xl text-content1 font-medium"
-          baseClassName="!py-7 w-full mt-4"
-          onClick={onNext}
-        />
+        buttonText="Continue"
+        variant="secondary"
+        textClassName="text-xl text-content1 font-medium"
+        baseClassName="!py-7 w-full mt-4"
+        onClick={onNext}
+      />
     </div>
   );
 };

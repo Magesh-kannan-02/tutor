@@ -1,27 +1,17 @@
 import { Button, Featurecard } from "@/components";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useOnboardingStore } from "@/store/onboarding";
 
-const USE_OPTIONS = [
-  { label: "Breaking the ice", icon: "think", iconClass: "w-7" },
-  { label: "Keeping the conversation going", icon: "air", iconClass: "w-7" },
-  { label: "Thinking of words on the spot", icon: "search", iconClass: "w-7" },
-  { label: "Catching different accents", icon: "couple", iconClass: "w-7" },
-  { label: "Explaining big ideas", icon: "brain", iconClass: "w-7" },
-];
-
-interface selectTripsProps {
+interface SelectTripsProps {
   onNext?: () => void;
 }
 
-export const SelectTrips = ({ onNext }: selectTripsProps) => {
-  const [selectedTrips, setSelectedTrips] = useState<string[]>([]);
-
-  const toggleUse = (value: string) => {
-    setSelectedTrips((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-    );
-  };
+export const SelectTrips = ({ onNext }: SelectTripsProps) => {
+  const {
+    tripOptions,
+    selectedTrips,
+    toggleTrip,
+  } = useOnboardingStore();
 
   return (
     <div className="flex flex-col items-center h-full justify-between py-5 px-4">
@@ -31,7 +21,7 @@ export const SelectTrips = ({ onNext }: selectTripsProps) => {
         </p>
 
         <div className="flex flex-col gap-4 w-full pb-10">
-          {USE_OPTIONS.map((item) => {
+          {tripOptions.map((item) => {
             const isActive = selectedTrips.includes(item.label);
 
             return (
@@ -42,7 +32,7 @@ export const SelectTrips = ({ onNext }: selectTripsProps) => {
                 iconClassName={item.iconClass}
                 allowendendContent
                 isactive={isActive}
-                handleClick={() => toggleUse(item.label)}
+                handleClick={() => toggleTrip(item.label)}
                 changeIconColor={false}
                 className={cn(
                   "py-[1rem] px-[1rem] cursor-pointer transition-all gap-0 bg-content1-foreground/15",
@@ -57,15 +47,16 @@ export const SelectTrips = ({ onNext }: selectTripsProps) => {
           })}
         </div>
       </div>
-        {selectedTrips.length > 0 && (
-          <Button
-            buttonText="Continue"
-            variant="secondary"
-            textClassName="text-xl text-content1 font-medium"
-            baseClassName="!py-7 w-full mt-4"
-            onClick={onNext}
-          />
-        )}
+
+      {selectedTrips.length > 0 && (
+        <Button
+          buttonText="Continue"
+          variant="secondary"
+          textClassName="text-xl text-content1 font-medium"
+          baseClassName="!py-7 w-full mt-4"
+          onClick={onNext}
+        />
+      )}
     </div>
   );
 };

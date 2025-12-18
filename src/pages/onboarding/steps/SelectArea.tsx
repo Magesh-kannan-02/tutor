@@ -1,28 +1,24 @@
 import { Featurecard } from "@/components";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
-
-const USE_OPTIONS = [
-  { label: "Technology & Engineering", icon: "working", iconClass: "w-7" },
-  { label: "Finance & Business", icon: "graph", iconClass: "w-7" },
-  { label: "Students & Education", icon: "graduate", iconClass: "w-7" },
-  { label: "Services & Skilled Work", icon: "tools", iconClass: "w-7" },
-  { label: "Marketing & Sales", icon: "aim", iconClass: "w-7" },
-  { label: "Science & Healthcare", icon: "firstaid", iconClass: "w-7" },
-  { label: "Media & Creativity", icon: "brush", iconClass: "w-7" },
-  { label: "Currently Unemployed", icon: "search", iconClass: "w-7" },
-];
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface SelectAreaProps {
   onNext?: () => void;
 }
 
 export const SelectArea = ({ onNext }: SelectAreaProps) => {
-  const [selectedUse, setSelectedUse] = useState<string | null>(null);
+  const {
+    workAreas,
+    workArea,
+    setWorkArea,
+  } = useOnboardingStore();
 
   const handleSelect = (value: string) => {
-    setSelectedUse(value);
-    setTimeout(() => onNext?.(), 250); 
+    setWorkArea(value);
+
+    setTimeout(() => {
+      onNext?.();
+    }, 250);
   };
 
   return (
@@ -32,8 +28,8 @@ export const SelectArea = ({ onNext }: SelectAreaProps) => {
       </p>
 
       <div className="flex flex-col gap-4 w-full pb-16">
-        {USE_OPTIONS.map((item) => {
-          const isActive = selectedUse === item.label;
+        {workAreas.map((item) => {
+          const isActive = workArea === item.label;
 
           return (
             <Featurecard

@@ -1,28 +1,27 @@
 import { Button, Chip, CircularTimer, Dropdown } from "@/components";
 import aiCallImg from "@/assets/images/aiCall.png";
 import aiCallBlackImg from "@/assets/images/aiCallBlack.png";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface SelectContextProps {
   onNext?: () => void;
 }
 
-const CONTEXT_CHIPS = [
-  "Tour Guide",
-  "Medical Staff",
-  "Teacher",
-  "Lawyer",
-];
-
 export const SelectContext = ({ onNext }: SelectContextProps) => {
-  const [dropdownValue, setDropdownValue] = useState<string | undefined>(undefined);
-  const [selectedContext, setSelectedContext] = useState("Tour Guide");
+  const {
+    contextChips,
+    contextCategories,
+    contextCategory,
+    selectedContext,
+    setContextCategory,
+    setSelectedContext,
+  } = useOnboardingStore();
 
   return (
-    <div className="flex flex-col items-center h-full justify-between gap-20  ">
+    <div className="flex flex-col items-center h-full justify-between gap-20">
       {/* Top content */}
-      <div className="flex flex-col items-center gap-6 mt-6 ">
+      <div className="flex flex-col items-center gap-6 mt-6">
         {/* AI orb */}
         <div className="relative w-24 h-24">
           <img
@@ -44,7 +43,7 @@ export const SelectContext = ({ onNext }: SelectContextProps) => {
         </div>
 
         {/* Timer */}
-        <CircularTimer duration={180} size={150} strokeWidth={5} />
+        <CircularTimer duration={180} size={150} strokeWidth={5} stop />
       </div>
 
       {/* Bottom controls */}
@@ -58,30 +57,32 @@ export const SelectContext = ({ onNext }: SelectContextProps) => {
           <Dropdown
             placeholder="Career Training"
             className="px-4"
-            options={[
-              { label: "Career Training", value: "career" },
-              { label: "Daily Conversation", value: "daily" },
-            ]}
-            value={dropdownValue}
-            onChange={setDropdownValue}
+            triggerClassName="bg-content1-foreground/15"
+            options={contextCategories}
+            value={contextCategory}
+            onChange={setContextCategory}
           />
-        {/* Chips */}
-        <div className="flex gap-3 justify-start w-full overflow-x-auto overflow-y-hidden">
-          {CONTEXT_CHIPS.map((chip,i) => {
-            const isActive = selectedContext === chip;
 
-            return (
-              <Chip
-                key={chip}
-                text={chip}
-                isactive={isActive}
-                handleClick={() => setSelectedContext(chip)}
-                allowAnimation
-                className={cn("cursor-pointer flex-shrink-0",i===0 && 'ml-4')}
-              />
-            );
-          })}
-        </div>
+          {/* Chips */}
+          <div className="flex gap-3 justify-start w-full overflow-x-auto overflow-y-hidden">
+            {contextChips.map((chip, i) => {
+              const isActive = selectedContext === chip;
+
+              return (
+                <Chip
+                  key={chip}
+                  text={chip}
+                  isactive={isActive}
+                  handleClick={() => setSelectedContext(chip)}
+                  allowAnimation
+                  className={cn(
+                    "cursor-pointer flex-shrink-0",
+                    i === 0 && "ml-4"
+                  )}
+                />
+              );
+            })}
+          </div>
         </div>
 
         {/* Call button */}

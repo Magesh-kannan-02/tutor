@@ -1,23 +1,21 @@
-import { useState } from "react";
 import { Iconcard, Infocard } from "@/components";
 import { cn } from "@/lib/utils";
+import { useOnboardingStore } from "@/store/onboarding";
+import type { FeelOption } from "@/store/onboarding/types";
 
 interface SelectFeelProps {
   onNext?: () => void;
 }
 
-const FEEL_OPTIONS = [
-  { id: "no", label: "No", icon: "wrong" },
-  { id: "maybe", label: "May be", icon: "sad" },
-  { id: "yes", label: "Yes", icon: "tick" },
-];
-
 export const SelectFeel = ({ onNext }: SelectFeelProps) => {
-  const [selected, setSelected] = useState<string | null>(null);
+  const { feelOptions, feelSameWay, setFeelSameWay } = useOnboardingStore();
 
-  const handleSelect = (id: string) => {
-    setSelected(id);
-    setTimeout(() => onNext?.(), 200);
+  const handleSelect = (id: FeelOption) => {
+    setFeelSameWay(id);
+
+    setTimeout(() => {
+      onNext?.();
+    }, 200);
   };
 
   return (
@@ -31,8 +29,8 @@ export const SelectFeel = ({ onNext }: SelectFeelProps) => {
         className="px-[2.7rem]"
       />
 
-      <div className="flex flex-col gap-4 w-full pb-10 ">
-        {FEEL_OPTIONS.map((item) => (
+      <div className="flex flex-col gap-4 w-full pb-10">
+        {feelOptions.map((item) => (
           <Iconcard
             key={item.id}
             iconName={item.label}
@@ -41,8 +39,7 @@ export const SelectFeel = ({ onNext }: SelectFeelProps) => {
             handleCardClick={() => handleSelect(item.id)}
             className={cn(
               "py-10 cursor-pointer transition-all bg-content1-foreground/15",
-              selected === item.id &&
-                "bg-content1-foreground/20"
+              feelSameWay === item.id && "bg-content1-foreground/20"
             )}
           />
         ))}

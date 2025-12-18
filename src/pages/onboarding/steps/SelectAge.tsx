@@ -1,34 +1,26 @@
-import { useState } from "react";
 import { Featurecard } from "@/components";
 import { cn } from "@/lib/utils";
-
-const AGE_GROUPS = [
-  { id: "<24", label: "<24" },
-  { id: "25-34", label: "25 - 34" },
-  { id: "35-44", label: "35 - 44" },
-  { id: "45-54", label: "45 - 54" },
-  { id: "55-64", label: "55 - 64" },
-  { id: "65+", label: "65+" },
-];
+import { useOnboardingStore } from "@/store/onboarding";
+import type { AgeGroup } from "@/store/onboarding/types";
 
 interface SelectAgeProps {
-  onNext: () => void;
+  onNext?: () => void;
 }
 
 export const SelectAge = ({ onNext }: SelectAgeProps) => {
-  const [selectedAge, setSelectedAge] = useState<string | null>(null);
+  const { ageGroups, ageGroup, setAgeGroup } = useOnboardingStore();
 
-  const handleSelect = (id: string) => {
-    setSelectedAge(id);
+  const handleSelect = (id: AgeGroup) => {
+    setAgeGroup(id);
 
     // small delay feels natural
     setTimeout(() => {
-      onNext();
+      onNext?.();
     }, 200);
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 pb-16 py-5 px-4 w-full">
+    <div className="flex flex-col items-center gap-2 pb-16 px-4 w-full">
       <p className="text-[1.75rem] font-semibold text-content1-foreground">
         Pick your age group 👇
       </p>
@@ -38,17 +30,16 @@ export const SelectAge = ({ onNext }: SelectAgeProps) => {
       </p>
 
       <div className="flex flex-col gap-4 w-full max-w-sm">
-        {AGE_GROUPS.map((age) => (
+        {ageGroups.map((age) => (
           <Featurecard
             key={age.id}
             textContent={age.label}
             allowendendContent={false}
-            isactive={selectedAge === age.id}
+            isactive={ageGroup === age.id}
             handleClick={() => handleSelect(age.id)}
             className={cn(
               "cursor-pointer transition-all backdrop-blur-md bg-content1-foreground/15",
-              selectedAge === age.id &&
-                "bg-content1-foreground/20"
+              ageGroup === age.id && "bg-content1-foreground/30"
             )}
           />
         ))}

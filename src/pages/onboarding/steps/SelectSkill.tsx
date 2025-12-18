@@ -1,30 +1,17 @@
-import { useState } from "react";
 import { Skillcard, Button } from "@/components";
 import { cn } from "@/lib/utils";
-
-const SKILLS = [
-  { id: "speaking", title: "Build confidence in speaking", icon: "think" },
-  { id: "pronunciation", title: "Pronounce words clearly", icon: "mouth" },
-  { id: "vocabulary", title: "Grow your vocabulary", icon: "arm" },
-  { id: "grammar", title: "Fix grammar mistakes", icon: "writing" },
-  { id: "listening", title: "Understand native speakers better", icon: "ear" },
-  { id: "writing", title: "Write with ease", icon: "notes" },
-];
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface SelectSkillProps {
   onNext?: () => void;
 }
 
 export const SelectSkill = ({ onNext }: SelectSkillProps) => {
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-
-  const toggleSkill = (id: string) => {
-    setSelectedSkills((prev) =>
-      prev.includes(id)
-        ? prev.filter((skill) => skill !== id)
-        : [...prev, id]
-    );
-  };
+  const {
+    skills,
+    selectedSkills,
+    toggleSkill,
+  } = useOnboardingStore();
 
   return (
     <div className="flex flex-col items-center h-full justify-between gap-16 py-5 px-4">
@@ -34,8 +21,13 @@ export const SelectSkill = ({ onNext }: SelectSkillProps) => {
         </p>
 
         {/* Grid */}
-        <div className={cn("grid grid-cols-2 gap-4 w-full min-w-sm auto-rows-fr items-stretch",selectedSkills.length === 0 && 'pb-16')}>
-          {SKILLS.map((skill) => (
+        <div
+          className={cn(
+            "grid grid-cols-2 gap-4 w-full min-w-sm auto-rows-fr items-stretch",
+            selectedSkills.length === 0 && "pb-16"
+          )}
+        >
+          {skills.map((skill) => (
             <Skillcard
               key={skill.id}
               title={skill.title}
@@ -47,17 +39,20 @@ export const SelectSkill = ({ onNext }: SelectSkillProps) => {
             />
           ))}
         </div>
-      </div>    
+      </div>
+
       {/* Continue button */}
-      {selectedSkills.length > 0 && (
-        <Button
-          buttonText="Continue"
-          variant="secondary"
-          textClassName="text-xl text-content1 font-medium"
-          baseClassName="!py-7 w-full"
-          onClick={onNext}
-        />
-      )}
+      <div className="pb-5 w-full">
+        {selectedSkills.length > 0 && (
+          <Button
+            buttonText="Continue"
+            variant="secondary"
+            textClassName="text-xl text-content1 font-medium"
+            baseClassName="!py-7 w-full"
+            onClick={onNext}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,37 +1,33 @@
-import { useState } from "react";
 import { Button, Featurecard } from "@/components";
 import { cn } from "@/lib/utils";
-
-const CONFIDENCE_ISSUES = [
-  "I freeze up",
-  "I struggle to explain myself",
-  "People don’t understand my accent",
-  "I mess up grammar",
-  "I reply too slowly",
-  "None of the above",
-];
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface SelectConfidenceProps {
   onNext?: () => void;
 }
 
 export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const {
+    confidenceIssuesOptions,
+    confidenceIssues,
+    setConfidenceIssues,
+  } = useOnboardingStore();
 
-  const toggleSkill = (value: string) => {
-    // Special rule: "None of the above"
+  const toggleIssue = (value: string) => {
     if (value === "None of the above") {
-      setSelectedSkills(["None of the above"]);
+      setConfidenceIssues(["None of the above"]);
       return;
     }
 
-    setSelectedSkills((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : prev
-            .filter((v) => v !== "None of the above")
-            .concat(value)
-    );
+    if (confidenceIssues.includes(value)) {
+      setConfidenceIssues(confidenceIssues.filter((v) => v !== value));
+    } else {
+      setConfidenceIssues(
+        confidenceIssues
+          .filter((v) => v !== "None of the above")
+          .concat(value)
+      );
+    }
   };
 
   return (
@@ -46,14 +42,14 @@ export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
         </p>
 
         <div className="flex flex-col gap-4 w-full mb-14">
-          {CONFIDENCE_ISSUES.map((item) => {
-            const isActive = selectedSkills.includes(item);
+          {confidenceIssuesOptions.map((item) => {
+            const isActive = confidenceIssues.includes(item);
 
             return (
               <Featurecard
                 key={item}
                 textContent={item}
-                handleClick={() => toggleSkill(item)}
+                handleClick={() => toggleIssue(item)}
                 allowendendContent
                 isactive={isActive}
                 changeIconColor={false}
@@ -69,9 +65,10 @@ export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
             );
           })}
         </div>
-
       </div>
-        {selectedSkills.length > 0 && (
+
+      <div className="pb-5 w-full">
+        {confidenceIssues.length > 0 && (
           <Button
             buttonText="Continue"
             variant="secondary"
@@ -80,6 +77,7 @@ export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
             onClick={onNext}
           />
         )}
+      </div>
     </div>
   );
 };

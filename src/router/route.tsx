@@ -1,4 +1,4 @@
-import {Home,NotAuthorized,PlayGround,SelectTest,Onboarding} from "@/pages";
+import {FlowRenderer, Home,NotAuthorized,PlayGround,SelectTest,Onboarding} from "@/pages";
 
 
 import { ROUTES } from "@/utils";
@@ -8,6 +8,9 @@ export const publicRoutes = [
   { path: ROUTES.PLAYGROUND, element: <PlayGround /> },
   { path: ROUTES?.SELECT_TEST, element: <SelectTest /> }, 
   { path: ROUTES?.ONBOARDING, element: <Onboarding /> }, 
+   { path: "/onboarding", element: <FlowRenderer /> },
+  { path: "/feedback", element: <FlowRenderer /> },
+  { path: "/report", element: <FlowRenderer /> },
 ];
 
 // Protected pages

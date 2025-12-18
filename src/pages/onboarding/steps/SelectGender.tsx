@@ -1,25 +1,20 @@
-import { useState } from "react";
 import { Iconcard } from "@/components";
 import { cn } from "@/lib/utils";
+import { useOnboardingStore } from "@/store/onboarding";
+import type { Gender } from "@/store/onboarding/types";
 
 interface SelectGenderProps {
-  onNext: () => void;
+  onNext?: () => void;
 }
 
-const GENDERS = [
-  { id: "male", label: "Male", icon: "male" },
-  { id: "female", label: "Female", icon: "female" },
-];
-
 export const SelectGender = ({ onNext }: SelectGenderProps) => {
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
+  const { genders, gender, setGender } = useOnboardingStore();
 
-  const handleSelect = (id: string) => {
-    setSelectedGender(id);
+  const handleSelect = (id: Gender) => {
+    setGender(id);
 
-    // smooth UX
     setTimeout(() => {
-      onNext();
+      onNext?.();
     }, 200);
   };
 
@@ -32,19 +27,19 @@ export const SelectGender = ({ onNext }: SelectGenderProps) => {
       <p className="text-secondary-150 text-sm max-w-[18.5rem] text-center mb-10">
         This helps us personalize your experience.
       </p>
-        {GENDERS.map((gender) => (
-          <Iconcard
-            key={gender.id}
-            iconName={gender.label}
-            icontype={gender.icon}
-            handleCardClick={() => handleSelect(gender.id)}
-            className={cn(
-              "cursor-pointer bg-content1-foreground/15 mb-3",
-              selectedGender === gender.id &&
-                "bg-content1-foreground/20"
-            )}
-          />
-        ))}
+
+      {genders.map((item) => (
+        <Iconcard
+          key={item.id}
+          iconName={item.label}
+          icontype={item.icon}
+          handleCardClick={() => handleSelect(item.id)}
+          className={cn(
+            "cursor-pointer bg-content1-foreground/15 mb-3",
+            gender === item.id && "bg-content1-foreground/30"
+          )}
+        />
+      ))}
     </div>
   );
 };

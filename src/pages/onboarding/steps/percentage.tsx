@@ -1,14 +1,13 @@
 import { Button } from "@/components";
+import { useOnboardingStore } from "@/store/onboarding";
 
 interface PercentageProps {
-  percentage?: number;
   onNext?: () => void;
 }
 
-export const Percentage = ({
-  percentage = 40,
-  onNext,
-}: PercentageProps) => {
+export const Percentage = ({ onNext }: PercentageProps) => {
+  const { percentage, workArea } = useOnboardingStore();
+
   return (
     <div className="flex flex-col h-full justify-between items-center text-center py-5 px-4">
       {/* Center content */}
@@ -37,13 +36,14 @@ export const Percentage = ({
             {percentage}%
           </text>
         </svg>
+
         {/* Description */}
         <p className="mt-4 text-[1.75rem] text-content1-foreground">
           Professionals in
         </p>
 
         <p className="text-[1.75rem] font-semibold text-primary-100">
-          Technology & Engineering
+          {workArea ?? "Technology & Engineering"}
         </p>
       </div>
 
