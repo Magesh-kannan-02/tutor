@@ -7,20 +7,19 @@ interface SelectTripsProps {
 }
 
 export const SelectTrips = ({ onNext }: SelectTripsProps) => {
-  const {
-    tripOptions,
-    selectedTrips,
-    toggleTrip,
-  } = useOnboardingStore();
+  const { tripOptions, selectedTrips, toggleTrip } = useOnboardingStore();
 
   return (
-    <div className="flex flex-col items-center h-full justify-between py-5 px-4">
-      <div className="flex flex-col items-center w-full">
-        <p className="text-[1.75rem] font-semibold text-content1-foreground text-center max-w-[22rem] mb-10">
+    <div className="flex flex-col h-screen px-4 py-4 overflow-hidden">
+      {/* Header */}
+      <div className="flex flex-col items-center">
+        <p className="text-[1.75rem] font-semibold text-content1-foreground text-center max-w-[22rem] mb-6">
           What trips you up the most in conversations?
         </p>
+      </div>
 
-        <div className="flex flex-col gap-4 w-full pb-10">
+      <div className="flex-1 min-h-0 overflow-y-auto">
+        <div className="flex flex-col gap-4 pb-10">
           {tripOptions.map((item) => {
             const isActive = selectedTrips.includes(item.label);
 
@@ -48,15 +47,19 @@ export const SelectTrips = ({ onNext }: SelectTripsProps) => {
         </div>
       </div>
 
+      {/* Footer */}
       {selectedTrips.length > 0 && (
-        <Button
-          buttonText="Continue"
-          variant="secondary"
-          textClassName="text-xl text-content1 font-medium"
-          baseClassName="!py-7 w-full mt-4"
-          onClick={onNext}
-        />
+        <div className="sticky bottom-0 bg-background-200 pt-4">
+          <Button
+            buttonText="Continue"
+            variant="secondary"
+            textClassName="text-xl text-content1 font-medium"
+            baseClassName="!py-7 w-full"
+            onClick={onNext}
+          />
+        </div>
       )}
     </div>
   );
 };
+

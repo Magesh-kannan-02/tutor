@@ -7,24 +7,24 @@ interface SelectUseProps {
 }
 
 export const SelectUse = ({ onNext }: SelectUseProps) => {
-  const {
-    useCaseOptions,
-    englishUseCases,
-    toggleUseCase,
-  } = useOnboardingStore();
+  const { useCaseOptions, englishUseCases, toggleUseCase } =
+    useOnboardingStore();
 
   return (
-    <div className="flex flex-col items-center h-full justify-between py-4 px-4">
-      <div className="flex flex-col items-center gap-4 w-full">
+    <div className="flex flex-col h-screen px-4 py-4 overflow-hidden">
+      {/* Header */}
+      <div className="flex flex-col items-center gap-4">
         <p className="text-[1.75rem] font-semibold text-content1-foreground text-center max-w-[20rem]">
           When do you usually use English?
         </p>
 
-        <p className="text-secondary-150 text-sm max-w-[18.5rem] text-center mb-4">
+        <p className="text-secondary-150 text-sm max-w-[18.5rem] text-center">
           Pick everything that matches you
         </p>
+      </div>
 
-        <div className={cn("flex flex-col gap-4 w-full",englishUseCases.length > 0?' max-h-[55dvh] overflow-y-auto':' max-h-[70dvh] overflow-y-auto')}>
+      <div className="flex-1 min-h-0 overflow-y-auto mt-6">
+        <div className="flex flex-col gap-4">
           {useCaseOptions.map((item) => {
             const isActive = englishUseCases.includes(item.label);
 
@@ -52,13 +52,14 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
         </div>
       </div>
 
-      <div className=" w-full sticky bottom-0">
+      {/* Footer */}
+      <div className="sticky bottom-0 bg-background-200 pt-4">
         {englishUseCases.length > 0 && (
           <Button
             buttonText="Continue"
             variant="secondary"
             textClassName="text-xl text-content1 font-medium"
-            baseClassName="!py-7 w-full mt-4"
+            baseClassName="!py-7 w-full"
             onClick={onNext}
           />
         )}
@@ -66,3 +67,4 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
     </div>
   );
 };
+

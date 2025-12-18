@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { SoundIcon, EyeOffIcon } from "@/assets";
+import { Input } from "../input/input";
 
 interface InputpromptProps {
   id?: string;
@@ -16,6 +17,9 @@ interface InputpromptProps {
 
   showStrength?: boolean;
   mode?: "single" | "full";
+
+  error?: string;
+  confirmError?: string;
 
   className?: string;
   labelClassName?: string;
@@ -38,6 +42,7 @@ interface InputpromptProps {
   strengthSegmentOffClassName?: string;
 }
 
+
 export const Inputprompt = ({
   id,
   label,
@@ -52,6 +57,9 @@ export const Inputprompt = ({
 
   showStrength = false,
   mode = "single",
+
+  error,
+  confirmError,
 
   className,
   labelClassName,
@@ -73,23 +81,20 @@ export const Inputprompt = ({
   strengthSegmentOnClassName,
   strengthSegmentOffClassName,
 }: InputpromptProps) => {
-  // independent visibility toggles
   const [visibleMain, setVisibleMain] = useState(false);
   const [visibleConfirm, setVisibleConfirm] = useState(false);
 
   const isPassword = type === "password";
 
   const mainType = isPassword ? (visibleMain ? "text" : "password") : type;
-  const confirmType = isPassword ? (visibleConfirm ? "text" : "password") : "password";
+  const confirmType = visibleConfirm ? "text" : "password";
 
-  // password strength meter
   const strength = useMemo(() => {
     if (!showStrength || mode === "single") return 0;
-    const s = value ?? "";
     let score = 0;
-    if (s.length >= 6) score++;
-    if (/[a-z]/.test(s) && /[A-Z]/.test(s)) score++;
-    if (/\d/.test(s) || /[^A-Za-z0-9]/.test(s)) score++;
+    if (value.length >= 6) score++;
+    if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+    if (/\d|[^A-Za-z0-9]/.test(value)) score++;
     return Math.min(3, score);
   }, [value, showStrength, mode]);
 
@@ -108,16 +113,18 @@ export const Inputprompt = ({
         </label>
       )}
 
-      {/* PASSWORD / MAIN INPUT */}
+      {/* MAIN INPUT */}
       <div className="relative">
-        <input
+        <Input
           id={id}
           type={mainType}
           value={value}
           onChange={(e) => onChange?.(e.target.value)}
           placeholder={placeholder}
           className={cn(
-            "w-full rounded-xl px-4 py-3 bg-transparent backdrop-blur-2xl border border-content2 text-sm text-content1-foreground",
+            "rounded-xl px-4 py-3 bg-content1-foreground/15 backdrop-blur-2xl  h-12 border-[1.5px] text-sm",
+            "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-content1-foreground",
+            error ? "border-destructive focus-visible:ring-destructive" : "border-content2",
             inputClassName,
             mainInputClassName
           )}
@@ -127,21 +134,28 @@ export const Inputprompt = ({
           <button
             type="button"
             onClick={() => setVisibleMain(!visibleMain)}
-            className={cn("absolute right-3 top-1/2 -translate-y-1/2", iconClassName, mainIconClassName)}
-            aria-label={visibleMain ? "Hide password" : "Show password"}
+            className={cn(
+              "absolute right-3 top-1/2 -translate-y-1/2",
+              iconClassName,
+              mainIconClassName
+            )}
           >
-            {visibleMain ?  <SoundIcon /> : <EyeOffIcon /> }
+            {visibleMain ? <SoundIcon /> : <EyeOffIcon />}
           </button>
         )}
       </div>
 
-      {/* FULL MODE (Confirm password + strength) */}
+      {/* MAIN ERROR */}
+      {error && (
+        <p className="mt-1 text-xs text-destructive">{error}</p>
+      )}
+
+      {/* FULL MODE */}
       {mode === "full" && isPassword && (
         <>
-          {/* CONFIRM PASSWORD BLOCK */}
+          {/* CONFIRM INPUT */}
           {confirm && (
             <div className="mt-4">
-              {/* Confirm password label */}
               <label
                 className={cn(
                   "block mb-3 text-sm text-secondary-150",
@@ -152,13 +166,17 @@ export const Inputprompt = ({
               </label>
 
               <div className="relative">
-                <input
+                <Input
                   type={confirmType}
                   value={confirmValue}
                   onChange={(e) => onConfirmChange?.(e.target.value)}
                   placeholder="Confirm your password"
                   className={cn(
-                    "w-full rounded-xl px-4 py-3 bg-transparent backdrop-blur-2xl border border-content2 text-sm text-content1-foreground",
+                    "rounded-xl px-4 py-3 bg-content1-foreground/15 backdrop-blur-2xl h-12 border-[1.5px] text-sm",
+                    "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-content1-foreground",
+                    confirmError
+                      ? "border-destructive focus-visible:ring-destructive"
+                      : "border-content2",
                     inputClassName,
                     confirmInputClassName
                   )}
@@ -167,19 +185,31 @@ export const Inputprompt = ({
                 <button
                   type="button"
                   onClick={() => setVisibleConfirm(!visibleConfirm)}
-                  className={cn("absolute right-3 top-1/2 -translate-y-1/2", iconClassName, confirmIconClassName)}
-                  aria-label={visibleConfirm ? "Hide password" : "Show password"}
+                  className={cn(
+                    "absolute right-3 top-1/2 -translate-y-1/2",
+                    iconClassName,
+                    confirmIconClassName
+                  )}
                 >
                   {visibleConfirm ? <SoundIcon /> : <EyeOffIcon />}
                 </button>
               </div>
+
+              {/* CONFIRM ERROR */}
+              {confirmError && (
+                <p className="mt-1 text-xs text-destructive">
+                  {confirmError}
+                </p>
+              )}
             </div>
           )}
 
-          {/* STRENGTH BAR */}
+          {/* STRENGTH */}
           {showStrength && (
             <div className={cn("mt-4", strengthWrapperClassName)}>
-              <div className={cn("text-sm text-secondary-150 mb-2", strengthTitleClassName)}>Strength</div>
+              <div className={cn("text-sm text-secondary-150 mb-2", strengthTitleClassName)}>
+                Strength
+              </div>
 
               <div className={cn("flex gap-2", strengthBarsClassName)}>
                 {[1, 2, 3].map((n) => (
@@ -187,7 +217,9 @@ export const Inputprompt = ({
                     key={n}
                     className={cn(
                       "h-1 flex-1 rounded-full",
-                      n <= strength ? (strengthSegmentOnClassName ?? "bg-success") : (strengthSegmentOffClassName ?? "bg-success-100")
+                      n <= strength
+                        ? strengthSegmentOnClassName ?? "bg-success"
+                        : strengthSegmentOffClassName ?? "bg-success-100"
                     )}
                   />
                 ))}
@@ -199,5 +231,3 @@ export const Inputprompt = ({
     </div>
   );
 };
-
-export default Inputprompt;

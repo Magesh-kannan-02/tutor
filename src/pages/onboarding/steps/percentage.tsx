@@ -9,7 +9,7 @@ export const Percentage = ({ onNext }: PercentageProps) => {
   const { percentage, workArea } = useOnboardingStore();
 
   return (
-    <div className="flex flex-col h-full justify-between items-center text-center py-5 px-4">
+    <div className="flex flex-col h-full justify-between items-center text-center py-4 px-4">
       {/* Center content */}
       <div className="flex-1 flex flex-col justify-start items-center">
         {/* Big outlined percentage */}
