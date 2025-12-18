@@ -59,7 +59,7 @@ export const Skillcard = ({
       [activeClassName]: isactive,
       
     },className, isactive && activeVariants({variant:activevariant}),)}  onClick={handleClick} {...rest} >
-      <div className="flex flex-col  gap-y-[2.063rem] w-full">
+      <div className="flex flex-col justify-between gap-y-[2.063rem] w-full">
 
       <div className="flex justify-between w-full">
         {Icon?.type === "svg" && <span><Icon.icon className={cn(svgIconClassName)} /></span>}

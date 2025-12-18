@@ -27,11 +27,46 @@ export const KEYS={
   REPORT:"report"
 }
 
+export const ONBOARDING_PAGES = {
+  
+  AGE: "age",
+  GENDER: "gender",
+  SKILL: "skill",
+  CONFIDENCE: "confidence",
+  FEEL:"feel",
+  USE: "use",
+  AREA: "area",
+  PERCENT:"percentage",
+  DIFFICULTY:"difficulty",
+  TRIPS:"trips",
+  DIDYOUKNOW:"didyouknow",
+  LEVEL: "level",
+  CONTEXT: "context",
+  CALL: "call",
+} as const;
+
+
 export const FLOW = [
   {
     key: KEYS.ONBOARDING,
     path: ROUTES.ONBOARDING,
-    pages: [] as const,
+    pages: [
+
+      ONBOARDING_PAGES.AGE,
+      ONBOARDING_PAGES.GENDER,
+      ONBOARDING_PAGES.SKILL,
+      ONBOARDING_PAGES.CONFIDENCE,
+      ONBOARDING_PAGES.FEEL,
+      ONBOARDING_PAGES.USE,
+      ONBOARDING_PAGES.AREA,
+      ONBOARDING_PAGES.PERCENT,
+      ONBOARDING_PAGES.DIFFICULTY,
+      ONBOARDING_PAGES.TRIPS,
+      ONBOARDING_PAGES.DIDYOUKNOW,
+      ONBOARDING_PAGES.LEVEL,
+      ONBOARDING_PAGES.CONTEXT,
+      ONBOARDING_PAGES.CALL,
+    ] as const,
   },
   {
     key: KEYS.FEEDBACK,

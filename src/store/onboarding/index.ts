@@ -1,15 +1,10 @@
-import { create} from 'zustand';
-import type { OnboardingState } from './types';
-import { immer } from 'zustand/middleware/immer';
-import { createOnboardingSlice } from './onboardingSlice';
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import type { OnboardingStore } from "./types";
+import { createOnboardingSlice } from "./onboardingSlice";
 
-export const useOnboardingStore = create<OnboardingState>()(
-    immer((...state)=>({
-        ...createOnboardingSlice(...state)
-    }))
-    
-
-)
-    
-
-
+export const useOnboardingStore = create<OnboardingStore>()(
+  immer((...state) => ({
+    ...createOnboardingSlice(...state),
+  }))
+);

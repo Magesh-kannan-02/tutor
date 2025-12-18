@@ -7,6 +7,8 @@ export const createFlowSlice: StateCreator<FlowState> = (set, get) => ({
   pageIndex: 0,
 
   next: () => {
+    console.log(get().pageIndex, get().stepIndex);
+    
     const { stepIndex, pageIndex } = get();
     const step = FLOW[stepIndex];
 

@@ -13,7 +13,7 @@ interface CircularTimerProps {
   innerBgColor?: string;
   onComplete?: () => void;
   textClassName?: string; // for text class name
-  
+  stop?: boolean; //holding the time before starts
   
 }
 
@@ -29,6 +29,7 @@ export const CircularTimer = ({
   innerBgColor = "#3A3A39",
   textClassName,
   onComplete,
+  stop = false,
   ...rest
   
  
@@ -46,6 +47,8 @@ export const CircularTimer = ({
   const [timeLeft, setTimeLeft] = React.useState(duration);
 
   React.useEffect(() => {
+    if (stop) return; 
+    
     if (timeLeft <= 0) {
       onComplete?.();
       return;
@@ -100,7 +103,7 @@ export const CircularTimer = ({
           cx={size / 2}
           cy={size / 2}
           r={outerRadius}
-          stroke={progressColor}
+          stroke={stop?'#262626' :progressColor}
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={circumference}

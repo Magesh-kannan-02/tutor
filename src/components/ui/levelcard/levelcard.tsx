@@ -11,7 +11,7 @@ interface LevelcardProps {
   descriptionclassName?: string; // description class name
   title?: string; // title text
   description?: string; // description text
-  level?: 'beginner' | 'intermediate' | 'advanced' | 'upper-intermediate'; // level type
+  level?: 'beginner' | 'intermediate' | 'advanced' | 'upperIntermediate'; // level type
   isactive?:boolean // active state
   icon?:React.ReactNode
   activevariant?: 'default' // active variants when it is active

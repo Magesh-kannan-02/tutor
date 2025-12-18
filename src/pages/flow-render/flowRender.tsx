@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FLOW, type StepKey } from "@/utils/constants";
+import { FLOW, KEYS, ONBOARDING_PAGES, STEPS } from "@/utils/constants";
 import { useFlowStore } from "@/store/flow";
 import { Report } from "../report";
 import { Completion } from "../feedback/completion";
@@ -9,6 +9,8 @@ import { Rating } from "../feedback/rating";
 import { PersonalDetails } from "../feedback/personalDetails";
 import { Verification } from "../feedback/verification";
 
+import { Onboarding } from "../onboarding";
+
 export const FlowRenderer = () => {
   const { stepIndex, pageIndex, goTo } = useFlowStore();
   const navigate = useNavigate();
@@ -16,20 +18,37 @@ export const FlowRenderer = () => {
 
   const internalNav = useRef(false);
 
-  const COMPONENTS: Record<StepKey, Record<string, React.ReactNode>> = {
-    onboarding: {},
-    feedback: {
-      rating: <Rating />,
-      completion: <Completion />,
-      verified: <Verified />,
-      feedbackuserdetails:<PersonalDetails />,
-      verfication:<Verification />
+  const COMPONENTS: Record<string, Record<string, React.ReactNode>> = {
+    [KEYS.ONBOARDING]: {
+      [ONBOARDING_PAGES.AGE]: <Onboarding />,
+      [ONBOARDING_PAGES.GENDER]: <Onboarding />,
+      [ONBOARDING_PAGES.SKILL]: <Onboarding />,
+      [ONBOARDING_PAGES.CONFIDENCE]: <Onboarding />,
+      [ONBOARDING_PAGES.FEEL]: <Onboarding />,
+      [ONBOARDING_PAGES.USE]: <Onboarding />,
+      [ONBOARDING_PAGES.AREA]: <Onboarding />,
+      [ONBOARDING_PAGES.PERCENT]: <Onboarding />,
+      [ONBOARDING_PAGES.DIFFICULTY]: <Onboarding />,
+      [ONBOARDING_PAGES.TRIPS]: <Onboarding />,
+      [ONBOARDING_PAGES.DIDYOUKNOW]: <Onboarding />,
+      [ONBOARDING_PAGES.LEVEL]: <Onboarding />,
+      [ONBOARDING_PAGES.CONTEXT]: <Onboarding />,
+      [ONBOARDING_PAGES.CALL]: <Onboarding />,
     },
-    report: {
-      fluency: <Report />,
-      pronunciation: <Report />,
-      grammar: <Report />,
-      vocabulary: <Report />,
+
+    [KEYS.FEEDBACK]: {
+      [STEPS.RATING]: <Rating />,
+      [STEPS.COMPLETION]: <Completion />,
+      [STEPS.FEED_BACKUSER_DDETAILS]: <PersonalDetails />,
+      [STEPS.VERFIFICATION]: <Verification />,
+      [STEPS.VERIFIED]: <Verified />,
+    },
+
+    [KEYS.REPORT]: {
+      [STEPS.FLUENCY]: <Report />,
+      [STEPS.PRONUNCIATION]: <Report />,
+      [STEPS.GRAMMAR]: <Report />,
+      [STEPS.VOCABULARY]: <Report />,
     },
   };
 

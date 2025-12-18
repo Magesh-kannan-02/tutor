@@ -27,6 +27,7 @@ interface DrawerProps {
   overlayClassName?: string; // for overlay
   closeOnOutsideClick?: boolean; // for outside click
   hideCloseIcon?: boolean; // for hide close icon
+  headerContentCalssname?: string;
 }
 
 // --- Default Styles ---
@@ -166,6 +167,7 @@ export const DrawerComponent = ({
   positionClassNames,
   closeOnOutsideClick=true,
   hideCloseIcon=false,
+  headerContentCalssname,
   ...rest
 }: DrawerProps) => {
   return (
@@ -193,7 +195,7 @@ export const DrawerComponent = ({
     headerClassName
   )}
 >
-  <div>{headerContent}</div>
+  <div className={cn(headerContentCalssname)}>{headerContent}</div>
 
   {!hideCloseIcon && (
     <span className="pr-4">
