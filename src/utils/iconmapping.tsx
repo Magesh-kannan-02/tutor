@@ -10,6 +10,11 @@ import BeginnerImg from "@/assets/images/beginner.png";
 import SnailImg from "@/assets/images/snail.png";
 import ArmImg from "@/assets/images/arm.png"
 import AvatarImg from '@/assets/images/avatar.png';
+import VirusImg from '@/assets/images/virus.png';
+import TrophyImg from '@/assets/images/trophy.png';
+import HappyImg from '@/assets/images/smile.png';
+import SmileImg from '@/assets/images/decent.png';
+import SadImg from '@/assets/images/sad.png';
 export type SVGIcon = React.ComponentType<{ fill?: string ,className?:string}>;
 
 export const iconMapping: Record<
@@ -63,6 +68,26 @@ export const iconMapping: Record<
     fluency:{
       type:'svg',
       icon: FluencyIcon
+    },
+   virus:{
+      type:'image',
+      icon: VirusImg
+    },
+   cup:{
+      type:'image',
+      icon: TrophyImg
+    },
+   super:{
+      type:'image',
+      icon: HappyImg
+    },
+   decent:{
+      type:'image',
+      icon: SmileImg
+    },
+   sad:{
+      type:'image',
+      icon: SadImg
     },
     
 }

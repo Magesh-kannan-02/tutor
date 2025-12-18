@@ -17,7 +17,9 @@ html,
 body {
   overflow-y: auto;
   scrollbar-width: none;     
-  -ms-overflow-style: none;    
+  -ms-overflow-style: none; 
+  scrollbar-gutter: stable;
+   
 }
 
 /* Chrome, Safari, Opera */

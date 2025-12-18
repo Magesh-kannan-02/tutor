@@ -1,77 +1,69 @@
-import { ReportHeader } from "./components/header";
 import { RootLayout } from "@/layouts";
-import { cn } from "@/lib/utils";
 import { BackgroundBlur } from "@/assets";
-import { Fluency } from "./fluency";
+import { ReportHeader } from "./components/header";
 import { Button } from "@/components";
+import { useFlowStore } from "@/store/flow";
+import { FLOW } from "@/utils/constants";
+import { Fluency } from "./fluency";
 import { Pronunciation } from "./pronunciation";
-import { useReportStore } from "@/store/report";
+import { Grammar } from "./grammar";
+import { Vocabulary } from "./vocabulary";
 
-const steps = [
-  {
+const pageComponents: Record<any, any> = {
+  fluency: {
+    component: <Fluency />,
     title: "Fluency",
-    bgColour: "bg-primary-250",
     value: 50,
     description:
       "You’re improving steadily — just a little faster pacing can make your speech shine.",
     gradientFrom: "#63FF7F",
     gradientTo: "#035C24",
-    content: <Fluency />,
     trackColor: "#1f3b28",
+    bgColour: "bg-primary-250",
   },
-  {
+  pronunciation: {
+    component: <Pronunciation />,
     title: "Pronunciation",
-    bgColour: "bg-content1-150",
     value: 48,
-    description:
-      "Improve your pronunciation by 46% to reach A1 proficiency. Below are the sounds that need your attention.",
+    description: "Improve your grammar skills to reach A1 proficiency.",
     gradientFrom: "#63D3FF",
     gradientTo: "#031A5C",
     trackColor: "#233147",
-    content: <Pronunciation />,
+    bgColour: "bg-content1-150",
   },
-  {
+  grammar: {
+    component: <Grammar />,
     title: "Grammar",
-    bgColour: "bg-content1-150",
-    value: 48,
+    value: 15,
     description:
-      "Improve your pronunciation by 46% to reach A1 proficiency. Below are the sounds that need your attention.",
-    gradientFrom: "#63D3FF",
-    gradientTo: "#031A5C",
-    trackColor: "#233147",
-    content: <Pronunciation />,
+      "Grammar’s not your enemy — just level it up by 40% to speak smoother! 🎯",
+    gradientFrom: "#FFB663",
+    gradientTo: "#5C3603",
+    trackColor: "#473F23",
+    bgColour: "bg-content2-50",
   },
-];
+  vocabulary: {
+    component: <Vocabulary />,
+    title: "Vocabulary",
+    value: 15,
+    description: "Boost your vocab by 14% to express with more clarity.",
+    gradientFrom: "#FF63DD",
+    gradientTo: "#5C034D",
+    trackColor: "#472445",
+    bgColour: "bg-content2-100",
+  },
+};
 
 export const Report = () => {
-  const currentReportIndex = useReportStore(
-    (state) => state.currentReportIndex
-  );
+  const { stepIndex, pageIndex, next, back } = useFlowStore();
 
-  const setCurrentReportIndex = useReportStore(
-    (state) => state.setCurrentReportIndex
-  );
-
-  const isLastStep = currentReportIndex === steps.length - 1;
-
-  const handleNext = () => {
-    if (!isLastStep) {
-      setCurrentReportIndex(currentReportIndex + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentReportIndex > 0) {
-      setCurrentReportIndex(currentReportIndex - 1);
-    }
-  };
+  const step = FLOW[stepIndex];
+  const currentPageKey = step?.pages?.[pageIndex];
+  const currentPage = currentPageKey ? pageComponents[currentPageKey] : null;
 
   return (
     <RootLayout
-      containerClassName={cn(
-        steps[currentReportIndex]?.bgColour,
-        "relative h-screen overflow-hidden py-[0.8rem] px-[1rem] flex flex-col"
-      )}
+      containerClassName={`relative h-screen overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col ${currentPage?.bgColour}`}
     >
       {/* Backgrounds */}
       <BackgroundBlur
@@ -83,29 +75,30 @@ export const Report = () => {
         size={600}
       />
 
-      {/* Header (fixed) */}
-      <ReportHeader
-        onBack={handleBack}
-        title={steps[currentReportIndex].title}
-        value={steps[currentReportIndex].value}
-        gradientFrom={steps[currentReportIndex].gradientFrom}
-        gradientTo={steps[currentReportIndex].gradientTo}
-        description={steps[currentReportIndex].description}
-        trackColor={steps[currentReportIndex].trackColor}
-      />
+      {/* Header */}
+      {currentPage && (
+        <ReportHeader
+          onBack={back}
+          title={currentPage.title}
+          value={currentPage.value}
+          gradientFrom={currentPage.gradientFrom}
+          gradientTo={currentPage.gradientTo}
+          description={currentPage.description}
+          trackColor={currentPage.trackColor}
+        />
+      )}
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto w-[100%]">
-        {steps[currentReportIndex].content}
+      <div className="flex-1 overflow-y-auto w-[100%] ">
+        {currentPage?.component}
       </div>
 
-      {/* Footer (fixed) */}
+      {/* Footer */}
       <div className="pt-4 w-full">
         <Button
-          buttonText={isLastStep ? "Finish" : "Next"}
+          buttonText={"Next"}
           variant="secondary"
-          onClick={handleNext}
-          disabled={isLastStep}
+          onClick={next}
           textClassName="!text-[1.125rem] text-content1 font-medium font-sans"
         />
       </div>

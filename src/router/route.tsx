@@ -1,4 +1,6 @@
-import { Home, NotAuthorized, PlayGround, Report, SelectTest } from "@/pages";
+import {FlowRenderer, Home,NotAuthorized,PlayGround,SelectTest} from "@/pages";
+
+
 
 import { ROUTES } from "@/utils";
 interface Route {
@@ -7,11 +9,13 @@ interface Route {
 }
 
 // Public pages
-export const publicRoutes:Route[] = [
-  { path: ROUTES?.NOT_AUTHORIZED, element: <NotAuthorized /> },
-  { path: ROUTES?.PLAYGROUND, element: <PlayGround /> },
-  { path: ROUTES?.SELECT_TEST, element: <SelectTest /> },
-  { path: ROUTES?.REPORT, element: <Report /> },
+export const publicRoutes :Route[]= [
+  { path: ROUTES.NOT_AUTHORIZED, element: <NotAuthorized /> },
+  { path: ROUTES.PLAYGROUND, element: <PlayGround /> },
+  { path: ROUTES?.SELECT_TEST, element: <SelectTest /> }, 
+   { path: "/onboarding", element: <FlowRenderer /> },
+  { path: "/feedback", element: <FlowRenderer /> },
+  { path: "/report", element: <FlowRenderer /> },
 ];
 
 // Protected pages

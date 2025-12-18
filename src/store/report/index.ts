@@ -1,9 +1,14 @@
 import { create } from "zustand";
-import { createReportSlice } from "./reportSlice";
 import { immer } from "zustand/middleware/immer";
-import type { ReportState } from "./types";
-export const useReportStore = create<ReportState>()(
+
+import type { FluencyState } from "./fluency/types";
+
+import { createFluencySlice } from "./fluency/fluencySlice";
+
+type ReportStore = FluencyState;
+
+export const useReportStore = create<ReportStore>()(
   immer((...state) => ({
-    ...createReportSlice(...state),
+    ...createFluencySlice(...state),
   }))
 );

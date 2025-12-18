@@ -50,7 +50,7 @@ function Trigger({ level, word, optionalWord, className }: TriggerProps) {
       <p className="col-span-1 text-h6 !text-content1-foreground leading-normal">
         {word}
       </p>
-      <p className="col-span-1 text-h6 !text-content1-foreground leading-normal text-start col-start-4 items-center ">
+      <p className="col-span-1 text-h6 !text-content1-foreground leading-normal text-start col-start-4 items-center">
         {optionalWord}
       </p>
     </div>

@@ -30,7 +30,7 @@ interface FeaturecardProps {
 const activeVariants = cva("", {
   variants: {
     variant: {
-      default: "backdrop-blur-[6.25rem] bg-content1-foreground/30",
+      default: "backdrop-blur-[6.25rem] bg-content1-foreground/20",
       solid: "border-none bg-gradient-to-b from-primary to-primary-foreground",
     },
   },
