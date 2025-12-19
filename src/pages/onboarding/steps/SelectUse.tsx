@@ -11,7 +11,7 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
     useOnboardingStore();
 
   return (
-    <div className="flex flex-col h-screen px-4 py-4 overflow-hidden">
+    <div className="flex flex-col h-screen px-4 py-3 overflow-hidden">
       {/* Header */}
       <div className="flex flex-col items-center gap-4">
         <p className="text-[1.75rem] font-semibold text-content1-foreground text-center max-w-[20rem]">
@@ -53,7 +53,7 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
       </div>
 
       {/* Footer */}
-      <div className="sticky bottom-0 bg-background-200 pt-4">
+      <div className="sticky bottom-0 bg-background-200 pt-2">
         {englishUseCases.length > 0 && (
           <Button
             buttonText="Continue"

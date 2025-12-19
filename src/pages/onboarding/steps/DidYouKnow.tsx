@@ -10,7 +10,7 @@ export const DidYouKnow = ({ onNext }: DidYouKnowProps) => {
   const { statsValue } = useOnboardingStore();
 
   return (
-    <div className="flex flex-col h-full items-center justify-between py-5 px-4">
+    <div className="flex flex-col h-full items-center justify-between py-4 px-4">
       {/* Center content */}
       <div className="flex flex-col items-center text-center">
         {/* Title */}

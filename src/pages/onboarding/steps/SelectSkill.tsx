@@ -42,7 +42,7 @@ export const SelectSkill = ({ onNext }: SelectSkillProps) => {
       </div>
 
       {/* Continue button */}
-      <div className="sticky bottom-0  pt-4 pb-5">
+      <div className="sticky bottom-0  pt-2 pb-3">
         {selectedSkills.length > 0 && (
           <Button
             buttonText="Continue"

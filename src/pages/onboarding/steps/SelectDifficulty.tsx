@@ -52,7 +52,7 @@ export const SelectDifficulty = ({ onNext }: SelectDifficultyProps) => {
       </div>
 
       {/* Footer */}
-      <div className="sticky bottom-0 bg-background-200 pt-4">
+      <div className="sticky bottom-0 bg-background-200 pt-3">
         {difficultyFactors.length > 0 && (
           <Button
             buttonText="Continue"
