@@ -18,7 +18,7 @@ export const PersonalDetails = () => {
 
   return (
     <RootLayout
-      containerClassName={`relative h-screen overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col bg-content1`}
+      containerClassName={`relative  overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col bg-content1`}
     >
       {/* Backgrounds */}
       <BackgroundBlur
@@ -34,7 +34,8 @@ export const PersonalDetails = () => {
 
       {/* Content */}
 
-      <div className="w-[100%]">
+      <div className="w-[100%] flex-1 overflow-y-auto my-auto [mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
+    [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]">
         <EmailContent
           text="Let’s stay in touch ✉️"
           description="Enter your email to get progress updates, level insights, and personalized English tips."
@@ -57,6 +58,8 @@ export const PersonalDetails = () => {
             value={personalInfo.email ?? ""}
             onChange={(value) => updatePersonalInfo("email", value)}
           />
+          
+          
         </div>
       </div>
 

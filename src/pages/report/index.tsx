@@ -1,13 +1,14 @@
 import { RootLayout } from "@/layouts";
 import { BackgroundBlur } from "@/assets";
-import { ReportHeader } from "./components/header";
-import { Button } from "@/components";
+
+import { Button, CircularProgress } from "@/components";
 import { useFlowStore } from "@/store/flow";
 import { FLOW } from "@/utils/constants";
 import { Fluency } from "./fluency";
 import { Pronunciation } from "./pronunciation";
 import { Grammar } from "./grammar";
 import { Vocabulary } from "./vocabulary";
+import { ReportNavbar } from "./components/navbar";
 
 const pageComponents: Record<any, any> = {
   fluency: {
@@ -45,7 +46,7 @@ const pageComponents: Record<any, any> = {
   vocabulary: {
     component: <Vocabulary />,
     title: "Vocabulary",
-    value: 15,
+    value: 70,
     description: "Boost your vocab by 14% to express with more clarity.",
     gradientFrom: "#FF63DD",
     gradientTo: "#5C034D",
@@ -63,7 +64,7 @@ export const Report = () => {
 
   return (
     <RootLayout
-      containerClassName={`relative h-screen overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col ${currentPage?.bgColour}`}
+      containerClassName={`relative  overflow-hidden pt-[1.563rem] pb-[1rem] px-[1rem] flex flex-col ${currentPage?.bgColour}`}
     >
       {/* Backgrounds */}
       <BackgroundBlur
@@ -76,20 +77,32 @@ export const Report = () => {
       />
 
       {/* Header */}
-      {currentPage && (
-        <ReportHeader
-          onBack={back}
-          title={currentPage.title}
-          value={currentPage.value}
-          gradientFrom={currentPage.gradientFrom}
-          gradientTo={currentPage.gradientTo}
-          description={currentPage.description}
-          trackColor={currentPage.trackColor}
-        />
-      )}
+      {currentPage && <ReportNavbar onBack={back} title={currentPage?.title} />}
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto w-[100%] ">
+      <div
+        className="
+    flex-1 w-full overflow-y-auto
+    [mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
+    [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
+  "
+      >
+        <div className="flex flex-col items-center gap-4 pt-[1.688rem]">
+          <CircularProgress
+            label={"Score"}
+            value={currentPage?.value}
+            size={130}
+            gradientFrom={currentPage?.gradientFrom}
+            gradientTo={currentPage?.gradientTo}
+            trackColor={currentPage?.trackColor}
+          />
+
+          <p className="font-sans text-h6 text-center !text-secondary-150 leading-snug">
+            {currentPage?.description}
+          </p>
+
+          {currentPage?.component}
+        </div>
         {currentPage?.component}
       </div>
 

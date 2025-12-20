@@ -10,7 +10,7 @@ export const Verified = () => {
   const next = useFlowStore((state) => state.next);
   return (
     <RootLayout
-      containerClassName={`relative h-screen overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col bg-content1`}
+      containerClassName={`relative  overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col bg-content1`}
     >
       {/* Backgrounds */}
       <BackgroundBlur
@@ -26,11 +26,13 @@ export const Verified = () => {
 
       {/* Content */}
 
-      <div className="flex justify-center items-center flex-col pt-14 ">
+      <div className="flex justify-center items-center flex-col pt-14 flex-1 overflow-y-auto my-auto [mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
+    [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]">
         <p className="text-body3 font-semibold px-[3rem] !text-content1-foreground pb-[2.188rem] text-center leading-tight ">
           Verified Successfully!
         </p>
-        <TickContent text="You’re all set. Expect your English insights and tips soon." />
+        <TickContent text="You’re all set. Expect your English insights and tips soon." className="mb-auto"/>
+        
       </div>
 
       {/* Footer */}

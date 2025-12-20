@@ -1,25 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-dm-sans: "DM Sans",sans-serif;
+  --font-dm-sans: "DM Sans", sans-serif;
 }
-body{
+body {
   font-family: var(--font-dm-sans);
-  
-
 }
 
 /* Hide scrollbar but keep scrolling */
 html,
 body {
   overflow-y: auto;
-  scrollbar-width: none;     
-  -ms-overflow-style: none; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   scrollbar-gutter: stable;
-   
+  scroll-behavior: smooth;
 }
 
 /* Chrome, Safari, Opera */
@@ -34,8 +32,5 @@ svg {
 }
 
 * {
-  scrollbar-width: none; 
-  
+  scrollbar-width: none;
 }
-
-

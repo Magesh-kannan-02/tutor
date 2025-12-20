@@ -1,20 +1,21 @@
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface CircularProgressProps {
   id?: string; // unique id
-  value: number; // 0–100 (progress)
+  value: number; // 0–100
   size?: number; // diameter
   strokeWidth?: number; // thickness
   trackColor?: string; // background ring
   gradientFrom?: string; // start color
   gradientTo?: string; // end color
-  label?: string; // e.g. "Score"
-  valueClassName?: string; // custom classname for value
-  labelClassName?: string; // custom classname for label
+  label?: string;
+  valueClassName?: string;
+  labelClassName?: string;
 }
 
 export const CircularProgress = ({
-  id='',
+  id = "",
   value,
   size = 160,
   strokeWidth = 15,
@@ -24,16 +25,47 @@ export const CircularProgress = ({
   label = "Score",
   valueClassName = "",
   labelClassName = "",
-  ...rest
 }: CircularProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const progress = (value / 100) * circumference;
+  const progressOffset = circumference - (value / 100) * circumference;
+
+  // animation state
+  const [offset, setOffset] = useState(circumference);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  // animate on mount / value change
+  useEffect(() => {
+    // stroke animation
+    requestAnimationFrame(() => {
+      setOffset(progressOffset);
+    });
+
+    // number animation
+    let start = 0;
+    const duration = 1000;
+    const startTime = performance.now();
+
+    const animateNumber = (time: number) => {
+      const progress = Math.min((time - startTime) / duration, 1);
+      setDisplayValue(Math.round(progress * value));
+      if (progress < 1) requestAnimationFrame(animateNumber);
+    };
+
+    requestAnimationFrame(animateNumber);
+  }, [progressOffset, value]);
 
   return (
-    <div id={id} {...rest} style={{ width: size, height: size, position: "relative" }}>
+    <div
+      id={id}
+      style={{
+        width: size,
+        height: size,
+        position: "relative",
+      }}
+    >
       <svg width={size} height={size}>
-        {/* Gradient Definition */}
+        {/* Gradient */}
         <defs>
           <linearGradient
             id="progressGradient"
@@ -47,7 +79,7 @@ export const CircularProgress = ({
           </linearGradient>
         </defs>
 
-        {/* Background Track */}
+        {/* Track */}
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -57,7 +89,7 @@ export const CircularProgress = ({
           fill="none"
         />
 
-        {/* Progress Circle */}
+        {/* Progress */}
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -66,15 +98,18 @@ export const CircularProgress = ({
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={circumference}
-          strokeDashoffset={circumference - progress}
+          strokeDashoffset={offset}
           strokeLinecap="round"
-          transform={`rotate(90 ${size / 2} ${size / 2})`}
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          style={{
+            transition: "stroke-dashoffset 1s ease-out",
+          }}
         />
       </svg>
 
       {/* Center Text */}
       <div
-        className="flex flex-col justify-center items-center gap-1"
+        className="flex flex-col items-center justify-center gap-1"
         style={{
           position: "absolute",
           top: "50%",
@@ -90,18 +125,14 @@ export const CircularProgress = ({
           )}
           style={{ fontSize: size * 0.23 }}
         >
-          {value}
+          {displayValue}
         </p>
         <p
           className={cn(
             "leading-none font-sans font-medium text-secondary-150",
             labelClassName
           )}
-          style={{
-            fontSize: size * 0.13,
-
-            marginTop: 4,
-          }}
+          style={{ fontSize: size * 0.13, marginTop: 4 }}
         >
           {label}
         </p>

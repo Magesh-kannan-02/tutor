@@ -33,7 +33,7 @@ export const Verification = () => {
   };
 
   return (
-    <RootLayout containerClassName="relative h-screen overflow-hidden py-[0.8rem] px-[1rem] flex flex-col bg-content1">
+    <RootLayout containerClassName="relative  overflow-hidden py-[0.8rem] px-[1rem] flex flex-col bg-content1">
       {/* Backgrounds */}
       <BackgroundBlur
         className="absolute -left-96 -top-28 pointer-events-none"
@@ -48,7 +48,8 @@ export const Verification = () => {
       <FeedbackHeader onBack={back} />
 
       {/* Content */}
-      <div className="w-full">
+      <div className="w-full flex-1 overflow-y-auto my-auto [mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
+    [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]">
         <EmailContent
           text="Verify your email 💌"
           description="We’ve sent a 4-digit code to "

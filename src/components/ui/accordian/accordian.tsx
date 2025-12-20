@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronDown } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 const Accordion = AccordionPrimitive.Root;
@@ -54,26 +54,14 @@ const AccordionTrigger = React.forwardRef<
       >
         {children}
 
-        {/* OPEN ICON WRAPPER */}
+        <span className="relative flex items-center justify-center w-5 h-5 shrink-0">
+          <span className="absolute inset-0 hidden group-data-[state=open]:block">
+            {closeIcon}
+          </span>
 
-        <span
-          className={cn(
-            "icon-open hidden group-data-[state=open]:block",
-            openIconClassName
-          )}
-        >
-          {closeIcon || <ChevronDown className="h-4 w-4" />}
-        </span>
-
-        {/* CLOSE ICON WRAPPER */}
-
-        <span
-          className={cn(
-            "icon-closed block group-data-[state=open]:hidden",
-            closeIconClassName
-          )}
-        >
-          {openIcon || <ChevronDown className="h-4 w-4 rotate-180" />}
+          <span className="absolute inset-0 block group-data-[state=open]:hidden">
+            {openIcon}
+          </span>
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

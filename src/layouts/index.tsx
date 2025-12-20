@@ -17,10 +17,10 @@ export const RootLayout = ({
   containerClassName = "",
 }: RootLayoutProps) => {
   return (
-    <div className={cn("min-h-screen  flex justify-center", wrapperClassName)}>
+    <div className={cn("h-[100dvh] w-[100dvw] flex justify-center ", wrapperClassName)}>
       <div
         className={cn(
-          "w-full max-w-[425px] flex items-center flex-col min-h-screen",
+          "w-full  flex items-center flex-col ",
           containerClassName
         )}
       >

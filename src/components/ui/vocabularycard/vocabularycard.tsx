@@ -43,14 +43,14 @@ interface ContentProps {
 
 function Trigger({ level, word, optionalWord, className }: TriggerProps) {
   return (
-    <div className={cn("grid grid-cols-5 items-center", className)}>
+    <div className={cn("grid grid-cols-5 items-center w-[90%]", className)}>
       <p className="col-span-1 text-h6 !text-content1-foreground leading-normal ">
         {level}
       </p>
-      <p className="col-span-1 text-h6 !text-content1-foreground leading-normal">
+      <p className="col-span-2 text-h6 !text-content1-foreground pl-2 leading-normal">
         {word}
       </p>
-      <p className="col-span-1 text-h6 !text-content1-foreground leading-normal text-start col-start-4 items-center">
+      <p className="col-span-1 text-h6 !text-content1-foreground pl-4 leading-normal text-start  items-center">
         {optionalWord}
       </p>
     </div>
@@ -80,7 +80,7 @@ function Content({
             variant="outline"
             className={cn("", chipClassName)}
             textClassName={cn(
-              "font-sans !font-medium text-h6 !text-secondary-150",
+              "font-sans !font-medium !text-[0.875rem] text-secondary-150",
               chipTextClassName
             )}
           />

@@ -17,11 +17,12 @@ export const Rating = () => {
     updateFeedBack(id);
     setTimeout(() => {
       next();
-    },600);
+    }, 300);
   };
   return (
     <RootLayout
-      containerClassName={`relative h-screen overflow-hidden  py-[0.8rem] px-[1rem] flex flex-col bg-content1 `}
+      containerClassName={`relative  overflow-hidden  pt-[0.8rem] px-[1rem] flex flex-col bg-content1 
+        `}
     >
       {/* Backgrounds */}
       <BackgroundBlur
@@ -35,8 +36,13 @@ export const Rating = () => {
       {/* header */}
       <FeedbackHeader onBack={back} />
       {/* content */}
-      <div className="flex flex-col gap-[3.75rem] w-[100%] mt-12">
-        <div className="flex flex-col gap-[0.75rem] items-center">
+      <div
+        className="flex flex-col gap-[3.75rem] w-[100%] pb-[0.8rem] flex-1 overflow-y-auto [mask-image:linear-gradient(to_bottom,transparent,black_24px)]
+[-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px)]
+
+      "
+      >
+        <div className="flex flex-col gap-[0.75rem] items-center pt-5">
           <p className="font-semibold  font-sans text-body3 !text-content1-foreground">
             Rate your session!
           </p>

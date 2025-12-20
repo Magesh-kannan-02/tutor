@@ -3,7 +3,7 @@ import { grammarData ,grammarTitle} from "@/data/report";
 
 export const Grammar = () => {
   return (
-    <div className="py-[2.9rem] flex flex-col gap-[0.75rem] ">
+    <div className="py-[2.9rem] flex flex-col gap-[0.75rem]  w-[100%]">
       <Wordscard
         icontype={grammarTitle?.iconType}
         iconName={grammarTitle?.iconType}

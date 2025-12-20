@@ -9,14 +9,14 @@ export const Vocabulary = () => {
         iconName={vocabularyTitle?.iconType}
         className="px-[1rem] py-2"
         title={vocabularyTitle?.title}
-        titleClassname="text-body font-sans !text-content1-foreground font-bold"
+        titleClassname="text-[1rem] font-sans text-content1-foreground font-bold"
       />
 
       {/* Header */}
-      <div className="grid grid-cols-5 items-center">
+      <div className="grid grid-cols-5 items-center w-[90%] mx-[1rem]">
         <p className="col-span-1 font-bold text-secondary-150">Level</p>
-        <p className="col-span-1 font-bold text-secondary-150">Your word</p>
-        <p className="col-span-2 col-start-4  grid   font-bold text-secondary-150">
+        <p className="col-span-2 font-bold text-secondary-150">Your word</p>
+        <p className="col-span-1   grid   font-bold text-secondary-150">
           Say it better
         </p>
       </div>
