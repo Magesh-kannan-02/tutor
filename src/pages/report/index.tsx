@@ -87,7 +87,7 @@ export const Report = () => {
     [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_24px,black_calc(100%-24px),transparent)]
   "
       >
-        <div className="flex flex-col items-center gap-4 pt-[1.688rem]">
+        <div className="flex flex-col items-center gap-4  pt-[1.688rem]">
           <CircularProgress
             label={"Score"}
             value={currentPage?.value}
@@ -100,8 +100,6 @@ export const Report = () => {
           <p className="font-sans text-h6 text-center !text-secondary-150 leading-snug">
             {currentPage?.description}
           </p>
-
-          {currentPage?.component}
         </div>
         {currentPage?.component}
       </div>

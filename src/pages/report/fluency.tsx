@@ -4,10 +4,10 @@ import { frequencydata } from "@/data/report";
 
 export const Fluency = () => {
   return (
-    <div className="py-[2rem] w-[100%] flex flex-col gap-[1rem] overflow-y-auto hide-scrollbar">
+    <div className="pt-[2rem] pb-[0.5rem]  w-[100%] flex flex-col gap-[1rem] ">
       {frequencydata?.map((item, index) => (
         <Wordscard
-         className="bg-white/5"
+         className="bg-content1-foreground/5"
          key={index}
           icontype="snail"
           iconName="snail"

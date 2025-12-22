@@ -3,11 +3,12 @@ import { grammarData ,grammarTitle} from "@/data/report";
 
 export const Grammar = () => {
   return (
-    <div className="py-[2.9rem] flex flex-col gap-[0.75rem]  w-[100%]">
+    <div className="pt-[2.9rem] pb-[1rem] flex flex-col gap-[0.75rem]  w-[100%]">
       <Wordscard
         icontype={grammarTitle?.iconType}
         iconName={grammarTitle?.iconType}
         title={grammarTitle?.title}
+         className="!bg-content1-foreground/5"
         titleClassname="text-lg text-content1-foreground font-bold"
         caption="Let’s break them down and fix them fast."
         captionClassname="text-sm text-medium text-secondary-150"
@@ -23,6 +24,7 @@ export const Grammar = () => {
 
             {section?.cards?.map((card, cardIndex) => (
               <GrammarCard
+               className="!bg-content1-foreground/5"
                label={card?.label}
                 activelabelname={card?.activelabel}
                 key={cardIndex}

@@ -18,7 +18,7 @@ const PronunciationCard = ({ item }: { item: any }) => {
 
           return (
             <Playcard
-            className="cursor-pointer"
+            className="cursor-pointer bg-content1-foreground/5"
               key={data.id}
               title={data.title}
               icontype={isPlaying ? "sound" : "play"}
@@ -34,9 +34,10 @@ const PronunciationCard = ({ item }: { item: any }) => {
 
 export const Pronunciation = () => {
   return (
-    <div className="flex flex-col py-[2rem] gap-y-[1.25rem] w-full">
+    <div className="flex flex-col pt-[2rem] pb-[1rem] gap-y-[1.25rem] w-full">
       {/* Summary Card */}
       <Wordscard
+        className="bg-content1-foreground/5"
         icontype={pronountiationTileData?.icontype}
         iconName={pronountiationTileData?.icontype}
         caption={pronountiationTileData?.title}

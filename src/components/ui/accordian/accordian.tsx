@@ -128,7 +128,7 @@ export const AccordionComponent = ({
   ...rest
 }: AccordionComponentProps) => {
   return (
-    <Accordion id={id} className={cn("w-full text-white", className)} {...rest}>
+    <Accordion id={id} className={cn("w-[100%] text-white", className)} {...rest}>
       {items?.map((item) => (
         <AccordionItem
           key={item?.value}
