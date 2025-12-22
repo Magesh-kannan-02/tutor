@@ -6,6 +6,7 @@ export {NotAuthorized} from './not-authorised/index'
 export {SelectTest} from './select-test/index';
 export {Onboarding} from './onboarding';
 export {FlowRenderer} from './flow-render/flowRender';
+export {FeedBack} from './feedback/index'
 
 
 

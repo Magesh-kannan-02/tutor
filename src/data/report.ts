@@ -139,12 +139,5 @@ export const FeedBackData = [
   { id: "2", icontype: "super", title: "Super helpful", type: "image" },
   { id: "3", icontype: "decent", title: "Decent", type: "image" },
   { id: "4", icontype: "sad", title: "Not great", type: "image" },
-  { id: "5", icontype: "decent", title: "Decent", type: "image" },
-  { id: "6", icontype: "sad", title: "Not great", type: "image" },
-  { id: "7", icontype: "decent", title: "Decent", type: "image" },
-  { id: "8", icontype: "sad", title: "Not great", type: "image" },
-  { id: "7", icontype: "decent", title: "Decent", type: "image" },
-  { id: "8", icontype: "sad", title: "Not great", type: "image" },
-  { id: "7", icontype: "decent", title: "Decent", type: "image" },
-  { id: "8", icontype: "sad", title: "Not great", type: "image" },
+  
 ];

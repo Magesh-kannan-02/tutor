@@ -7,7 +7,7 @@ interface FeedbackHeaderProps {
 }
 
 export const FeedbackHeader = ({ className, onBack }: FeedbackHeaderProps) => {
-  return <div className={cn(className,"flex cursor-pointer py-2.5 items-center w-full")}>
+  return <div className={cn(className,"flex cursor-pointer py-2.5 items-center w-[100%]")}>
     <button onClick={onBack}>
 
     <ArrowLeftIcon  />

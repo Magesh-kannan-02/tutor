@@ -19,7 +19,7 @@ export const STEPS = {
   VERIFIED: "verified",
   RATING:"rating",
   FEED_BACKUSER_DDETAILS:"feedbackuserdetails",
-  VERFIFICATION:"verfication"
+  VERFIFICATION:"verification"
 };
 export const KEYS={
   ONBOARDING:"onboarding",

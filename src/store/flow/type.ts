@@ -3,6 +3,7 @@ import type { PageKey, StepKey } from "@/utils/constants";
 interface FlowSlice {
   stepIndex: number;
   pageIndex: number;
+  direction: "forward" | "back";
 
   next: () => void;
   back: () => void;

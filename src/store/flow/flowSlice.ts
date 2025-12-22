@@ -5,9 +5,11 @@ import { FLOW, type PageKey, type StepKey } from "@/utils/constants";
 export const createFlowSlice: StateCreator<FlowState> = (set, get) => ({
   stepIndex: 0,
   pageIndex: 0,
+  direction:"forward",
 
   next: () => {
     console.log(get().pageIndex, get().stepIndex);
+     set({direction:"forward"})
     
     const { stepIndex, pageIndex } = get();
     const step = FLOW[stepIndex];
@@ -24,6 +26,7 @@ export const createFlowSlice: StateCreator<FlowState> = (set, get) => ({
 
   back: () => {
     const { stepIndex, pageIndex } = get();
+      set({direction:"back"})
 
     if (stepIndex === 0 && pageIndex === 0) return;
 

@@ -5,11 +5,12 @@ import { useFlowStore } from "@/store/flow";
 import { Report } from "../report";
 import { Completion } from "../feedback/completion";
 import { Verified } from "../feedback/verified";
-import { Rating } from "../feedback/rating";
+
 import { PersonalDetails } from "../feedback/personalDetails";
 import { Verification } from "../feedback/verification";
 
 import { Onboarding } from "../onboarding";
+import { FeedBack } from "../feedback";
 
 export const FlowRenderer = () => {
   const { stepIndex, pageIndex, goTo } = useFlowStore();
@@ -37,11 +38,11 @@ export const FlowRenderer = () => {
     },
 
     [KEYS.FEEDBACK]: {
-      [STEPS.RATING]: <Rating />,
-      [STEPS.COMPLETION]: <Completion />,
-      [STEPS.FEED_BACKUSER_DDETAILS]: <PersonalDetails />,
-      [STEPS.VERFIFICATION]: <Verification />,
-      [STEPS.VERIFIED]: <Verified />,
+      [STEPS.RATING]: <FeedBack />,
+      [STEPS.COMPLETION]: <FeedBack />,
+      [STEPS.FEED_BACKUSER_DDETAILS]: <FeedBack />,
+      [STEPS.VERFIFICATION]: <FeedBack />,
+      [STEPS.VERIFIED]: <FeedBack />,
     },
 
     [KEYS.REPORT]: {

@@ -19,3 +19,5 @@ export { AccordionComponent } from "./ui/accordian/accordian";
 export { VocabularyCard } from "./ui/vocabularycard/vocabularycard";
 export { DrawerComponent } from "./ui/drawer/drawer";
 export { Input } from "./ui/input/input";
+export {RevealOnScroll} from './ui/animations/revealOnScroll'
+export {AnimatedScreen} from './ui/animations/screenAnimation'
