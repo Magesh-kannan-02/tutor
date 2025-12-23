@@ -1,6 +1,6 @@
 
 import { Inputprompt } from "@/components";
-import { EmailContent } from "./components/emailContent";
+import { Content } from "./components/Content";
 
 import { useFeedBackStore } from "@/store/feedback";
 import React from "react";
@@ -29,7 +29,7 @@ export const Verification = () => {
     <div className="w-full">
       {/* Content */}
 
-      <EmailContent
+      <Content
         text="Verify your email 💌"
         description="We’ve sent a 4-digit code to "
         email={personalInfo.email ?? ""}

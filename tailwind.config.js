@@ -118,6 +118,9 @@ module.exports = {
         warning: {
           DEFAULT: "#FF9437",
         },
+        danger:{
+              DEFAULT:"#D32F2F"
+        },
         success: {
           DEFAULT: "#51BC51",
           100: "#DDE7EE",

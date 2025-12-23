@@ -8,7 +8,9 @@ export const createFeedbackSlice: StateCreator<FeedbackState> = (set) => ({
     name: "",
     password: "",
     verficationCode: "",
+    confirm_password: "",
   },
+  
 
   updateFeedback: (id: string) => {
     set({ currentfeedbackid: id });
@@ -26,6 +28,8 @@ export const createFeedbackSlice: StateCreator<FeedbackState> = (set) => ({
         name: "",
         email: "",
         verficationCode: "",
+        confirm_password: "",
+        password: "",
       },
     });
   },

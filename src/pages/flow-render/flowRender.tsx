@@ -3,11 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FLOW, KEYS, ONBOARDING_PAGES, STEPS } from "@/utils/constants";
 import { useFlowStore } from "@/store/flow";
 import { Report } from "../report";
-import { Completion } from "../feedback/completion";
-import { Verified } from "../feedback/verified";
 
-import { PersonalDetails } from "../feedback/personalDetails";
-import { Verification } from "../feedback/verification";
+
 
 import { Onboarding } from "../onboarding";
 import { FeedBack } from "../feedback";
@@ -43,6 +40,7 @@ export const FlowRenderer = () => {
       [STEPS.FEED_BACKUSER_DDETAILS]: <FeedBack />,
       [STEPS.VERFIFICATION]: <FeedBack />,
       [STEPS.VERIFIED]: <FeedBack />,
+      [STEPS.CREATE_PASSWORD]:<FeedBack />
     },
 
     [KEYS.REPORT]: {

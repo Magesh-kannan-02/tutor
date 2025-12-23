@@ -2,6 +2,8 @@ export interface FeedbackData {
   name?: string;
   email?: string;
   verficationCode?: string;
+  password:string,
+  confirm_password?:string
 }
 interface FeedbackSliceTypes {
   currentfeedbackid: string;

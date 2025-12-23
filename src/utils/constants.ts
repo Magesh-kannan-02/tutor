@@ -19,7 +19,9 @@ export const STEPS = {
   VERIFIED: "verified",
   RATING:"rating",
   FEED_BACKUSER_DDETAILS:"feedbackuserdetails",
-  VERFIFICATION:"verification"
+  VERFIFICATION:"verification",
+  CREATE_PASSWORD:"createPassword"
+
 };
 export const KEYS={
   ONBOARDING:"onboarding",
@@ -71,7 +73,7 @@ export const FLOW = [
   {
     key: KEYS.FEEDBACK,
     path: ROUTES.FEEDBACK,
-    pages: [STEPS.RATING, STEPS.COMPLETION, STEPS.FEED_BACKUSER_DDETAILS, STEPS.VERFIFICATION, STEPS.VERIFIED] as const,
+    pages: [STEPS.RATING, STEPS.COMPLETION, STEPS.FEED_BACKUSER_DDETAILS, STEPS.VERFIFICATION, STEPS.VERIFIED,STEPS.CREATE_PASSWORD] as const,
   },
   {
     key: KEYS.REPORT,
