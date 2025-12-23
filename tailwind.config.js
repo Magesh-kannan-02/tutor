@@ -22,7 +22,7 @@ module.exports = {
       },
       fontSize: {
         body3: [
-          "1.625rem",
+          "1.5rem",
           {
             lineHeight: "1",
             letterSpacing: "0%",

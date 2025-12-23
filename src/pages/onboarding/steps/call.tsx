@@ -61,7 +61,7 @@ export const Call = ({onNext}:CallProps) => {
 
   return (
   <motion.div
-      className="flex flex-col items-center w-full h-full py-5 px-4 gap-5 justify-between"
+      className="flex flex-col items-center w-full h-full py-5 px-4 gap-5 my-auto justify-between"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -75,10 +75,10 @@ export const Call = ({onNext}:CallProps) => {
         <Avatarcard
           icontype="avatar"
           imageClassname="w-[12rem] h-[7.5rem]"
-          className="w-24 h-24 mt-3 overflow-hidden"
+          className="w-24 h-24 mt-auto mb-2 overflow-hidden"
         />
 
-        <p className="text-2xl font-black text-primary-200 mt-4">
+        <p className="text-2xl font-black text-primary-200 mt-auto">
           {selectedContext}
         </p>
 
@@ -90,7 +90,7 @@ export const Call = ({onNext}:CallProps) => {
       </motion.div>
 
        <motion.div
-        className="mt-6"
+        className="mt-auto"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.25 }}
@@ -99,7 +99,7 @@ export const Call = ({onNext}:CallProps) => {
       </motion.div>
 
      <motion.p
-        className="mt-6 text-h6 text-content1-foreground"
+        className="mt-auto text-h6 text-content1-foreground"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35 }}
@@ -108,7 +108,7 @@ export const Call = ({onNext}:CallProps) => {
       </motion.p>
 
     <motion.div
-        className="mt-16 w-full"
+        className="mt-auto w-full"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
@@ -123,7 +123,7 @@ export const Call = ({onNext}:CallProps) => {
       >
         <button
           className="
-            mt-auto mb-6
+            mt-auto mb-auto
             w-16 h-16
             rounded-full
             bg-gradient-to-b
@@ -153,11 +153,11 @@ export const Call = ({onNext}:CallProps) => {
         headerContentCalssname="flex-1 text-center"
         content={
          <motion.div
-            className="p-4 h-full flex flex-col gap-10 pb-16"
+            className="p-4 h-full flex flex-col  mb-auto"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <p className="mt-6 text-2xl font-bold text-green-400 flex-1">
+            <p className="mt-auto text-2xl font-bold text-green-400 flex-1">
               I’m working on it!
             </p>
 

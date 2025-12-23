@@ -9,7 +9,7 @@ export const PersonalDetails = () => {
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full  flex flex-col justify-between">
       <EmailContent
         text={"Let’s stay in touch ✉️"}
         description="Enter your email to get progress updates, level insights, and personalized English tips."
