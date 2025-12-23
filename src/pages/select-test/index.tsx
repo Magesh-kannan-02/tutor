@@ -42,7 +42,7 @@ export const SelectTest = () => {
           {/* Title  */}
            <RevealOnScroll>
 
-          <p className="text-content1-foreground font-black text-body3  text-center">
+          <p className="text-content1-foreground font-black text-body3 px-6 text-center">
             Pick what you’d like to{" "}
             <span className="text-primary-200">improve</span> first
           </p>
