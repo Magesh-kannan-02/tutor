@@ -42,7 +42,7 @@ export const AnimatedScreen = ({
         },
       }}
       style={{ willChange: "transform, opacity" }}
-      className={cn("w-full", className)}
+      className={cn("w-full h-full flex flex-col", className)}
     >
       {children}
     </motion.div>

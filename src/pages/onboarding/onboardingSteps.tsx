@@ -12,6 +12,8 @@ import { DidYouKnow } from "./steps/DidYouKnow";
 import { SelectLevel } from "./steps/SelectLevel";
 import { SelectContext } from "./steps/SelectContext";
 import { Call } from "./steps/call";
+import { OnboardingComplete } from "./steps/onboardingComplete";
+import { Streak } from "./steps/streak";
 
 export const ONBOARDING_COMPONENTS = [
   SelectAge,
@@ -28,4 +30,6 @@ export const ONBOARDING_COMPONENTS = [
   SelectLevel,
   SelectContext,
   Call,
+  OnboardingComplete,
+  Streak,
 ];

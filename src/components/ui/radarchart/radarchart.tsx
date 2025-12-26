@@ -69,7 +69,7 @@ const roundedGridPlugin: Plugin<"radar"> = {
 
       if (positions.length < 3) return
 
-      const cornerRadius = 26// Border radius for the grid lines
+      const cornerRadius = 20// Border radius for the grid lines
 
       const first = positions[0]
       const last = positions[positions.length - 1]
@@ -104,7 +104,7 @@ const gridBackgroundPlugin: Plugin<"radar"> = {
 
     const numPoints = scale.getLabels().length
     const ticks = scale.ticks
-    const cornerRadius = 26
+    const cornerRadius = 20
 
     ctx.save()
 

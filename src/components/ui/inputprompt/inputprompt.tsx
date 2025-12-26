@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { SoundIcon, EyeOffIcon } from "@/assets";
+import {  EyeOffIcon } from "@/assets";
 import { Input } from "../input/input";
+import { EyeIcon } from "lucide-react";
 
 interface InputpromptProps {
   id?: string;
@@ -40,6 +41,8 @@ interface InputpromptProps {
   strengthBarsClassName?: string;
   strengthSegmentOnClassName?: string;
   strengthSegmentOffClassName?: string;
+  errorClassName?: string;
+  confirmErrorClassName?: string;
 }
 
 
@@ -70,6 +73,9 @@ export const Inputprompt = ({
   mainLabelClassName,
   mainInputClassName,
   mainIconClassName,
+  errorClassName,
+
+  confirmErrorClassName,
 
   confirmLabelClassName,
   confirmInputClassName,
@@ -124,7 +130,7 @@ export const Inputprompt = ({
           className={cn(
             "rounded-xl px-4 py-3 bg-content1-foreground/15 backdrop-blur-2xl  h-12 border-[1.5px] text-h6 text-content1-foreground",
             "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-content1-foreground",
-            error ? "border-destructive focus-visible:ring-destructive" : "border-content2",
+            error ? "border-danger focus-visible:ring-danger" : "border-content2",
             inputClassName,
             mainInputClassName
           )}
@@ -140,14 +146,14 @@ export const Inputprompt = ({
               mainIconClassName
             )}
           >
-            {visibleMain ? <SoundIcon /> : <EyeOffIcon />}
+            {visibleMain ? <EyeIcon className="text-content1-foreground" />: <EyeOffIcon />}
           </button>
         )}
       </div>
 
       {/* MAIN ERROR */}
       {error && (
-        <p className="mt-1 text-xs text-destructive">{error}</p>
+        <p className={cn("mt-2 pl-1 text-xs text-danger", errorClassName)}>{error}</p>
       )}
 
       {/* FULL MODE */}
@@ -175,7 +181,7 @@ export const Inputprompt = ({
                     "rounded-xl px-4 py-3 bg-content1-foreground/15 backdrop-blur-2xl h-12 border-[1.5px] text-h6 text-content1-foreground",
                     "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-content1-foreground",
                     confirmError
-                      ? "border-destructive focus-visible:ring-destructive"
+                      ? "border-danger focus-visible:ring-danger"
                       : "border-content2",
                     inputClassName,
                     confirmInputClassName
@@ -191,13 +197,13 @@ export const Inputprompt = ({
                     confirmIconClassName
                   )}
                 >
-                  {visibleConfirm ? <SoundIcon /> : <EyeOffIcon />}
+                  {visibleConfirm ? <EyeIcon className="text-content1-foreground" /> : <EyeOffIcon />}
                 </button>
               </div>
 
               {/* CONFIRM ERROR */}
               {confirmError && (
-                <p className="mt-1 text-xs text-destructive">
+                <p className={cn("mt-2 pl-1 text-xs text-danger", confirmErrorClassName)}>
                   {confirmError}
                 </p>
               )}

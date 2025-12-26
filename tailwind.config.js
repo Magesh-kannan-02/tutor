@@ -118,6 +118,9 @@ module.exports = {
         warning: {
           DEFAULT: "#FF9437",
         },
+        danger:{
+              DEFAULT:"#D32F2F"
+        },
         success: {
           DEFAULT: "#51BC51",
           100: "#DDE7EE",
@@ -136,7 +139,8 @@ module.exports = {
           DEFAULT: "#565656",
           50: "#2D2305",
           100: "#2D052A",
-          150:"#4E4E4F"
+          150:"#4E4E4F",
+          200:"#B8B8B8"
         },
 
         background: {

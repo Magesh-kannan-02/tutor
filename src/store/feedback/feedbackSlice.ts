@@ -8,11 +8,28 @@ export const createFeedbackSlice: StateCreator<FeedbackState> = (set) => ({
     name: "",
     password: "",
     verficationCode: "",
+    confirm_password: "",
   },
+  isButtonDisabled: false,
+  personalInfoErrors:{
+    name: "",
+    password: "",
+    verficationCode: "",
+    confirm_password: "",
+
+  }
+  ,
 
   updateFeedback: (id: string) => {
     set({ currentfeedbackid: id });
   },
+  updateErrors: (key, value) =>
+    set((state) => ({
+      personalInfoErrors: {
+        ...state.personalInfoErrors,
+        [key]: value,
+      },
+    })),
   updatePersonalInfo: (key, value) =>
     set((state) => ({
       personalInfo: {
@@ -26,6 +43,8 @@ export const createFeedbackSlice: StateCreator<FeedbackState> = (set) => ({
         name: "",
         email: "",
         verficationCode: "",
+        confirm_password: "",
+        password: "",
       },
     });
   },

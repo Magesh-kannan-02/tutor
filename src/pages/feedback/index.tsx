@@ -11,6 +11,7 @@ import { Verification } from "./verification";
 import React from "react";
 import { FLOW } from "@/utils/constants";
 import { AnimatePresence, motion } from "framer-motion";
+import { CreatePassword } from "./createPassword";
 
 export const FeedBack = () => {
   const FeedBackComponents: Record<any, any> = {
@@ -43,6 +44,12 @@ export const FeedBack = () => {
       buttontext: "Verify & Continue",
       content: <Verification />,
     },
+    createPassword:{
+       title: "createPassword",
+      hasButton: true,
+      content:<CreatePassword />,
+      buttontext: "Continue",
+    }
   };
 
   const { stepIndex, pageIndex, next, back, direction } = useFlowStore();

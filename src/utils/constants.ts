@@ -19,7 +19,11 @@ export const STEPS = {
   VERIFIED: "verified",
   RATING:"rating",
   FEED_BACKUSER_DDETAILS:"feedbackuserdetails",
-  VERFIFICATION:"verification"
+  VERFIFICATION:"verification",
+  CREATE_PASSWORD:"createPassword",
+  VIEW_REPORT:"viewreport",
+  ACCENT:"accent",
+
 };
 export const KEYS={
   ONBOARDING:"onboarding",
@@ -43,6 +47,8 @@ export const ONBOARDING_PAGES = {
   LEVEL: "level",
   CONTEXT: "context",
   CALL: "call",
+  ONBOARDING_COMPLETION:"onboardingcompletion",
+  STREAK:"streak"
 } as const;
 
 
@@ -66,17 +72,19 @@ export const FLOW = [
       ONBOARDING_PAGES.LEVEL,
       ONBOARDING_PAGES.CONTEXT,
       ONBOARDING_PAGES.CALL,
+      ONBOARDING_PAGES.ONBOARDING_COMPLETION,
+      ONBOARDING_PAGES.STREAK
     ] as const,
   },
   {
     key: KEYS.FEEDBACK,
     path: ROUTES.FEEDBACK,
-    pages: [STEPS.RATING, STEPS.COMPLETION, STEPS.FEED_BACKUSER_DDETAILS, STEPS.VERFIFICATION, STEPS.VERIFIED] as const,
+    pages: [STEPS.RATING, STEPS.COMPLETION, STEPS.FEED_BACKUSER_DDETAILS, STEPS.VERFIFICATION, STEPS.VERIFIED,STEPS.CREATE_PASSWORD] as const,
   },
   {
     key: KEYS.REPORT,
     path: ROUTES.REPORT,
-    pages: [STEPS.FLUENCY,STEPS.PRONUNCIATION,  STEPS.GRAMMAR,STEPS.VOCABULARY] as const,
+    pages: [STEPS.VIEW_REPORT,STEPS.ACCENT,STEPS.FLUENCY,STEPS.PRONUNCIATION,  STEPS.GRAMMAR,STEPS.VOCABULARY] as const,
   },
 ] as const;
 

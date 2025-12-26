@@ -50,7 +50,7 @@ import diamondImg from "@/assets/images/diamond.png";
 import intermediateImg from "@/assets/images/intermediate.png";
 import upperIntermediateImg from "@/assets/images/upperIntermediate.png";
 import advancedImg from "@/assets/images/advanced.png";
-
+import LampImg from "@/assets/images/lamp.png";
 import FireImg from '@/assets/images/fire.png';
 export type SVGIcon = React.ComponentType<{
   fill?: string;
@@ -281,5 +281,9 @@ export const iconMapping: Record<
     fire:{
       type:'image',
       icon: FireImg
+    },
+    lamp:{
+      type:'image',
+      icon: LampImg
     }
 };

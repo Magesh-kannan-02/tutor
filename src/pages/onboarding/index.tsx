@@ -10,7 +10,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export const Onboarding = () => {
   const navigate = useNavigate();
-  const { stepIndex, pageIndex, next, back, direction } = useFlowStore();
+  const { stepIndex, pageIndex, next, back, direction, getCurrentPage } =
+    useFlowStore();
 
   const totalPages = FLOW.reduce(
     (sum, step) => sum + (step.pages.length || 1),
@@ -34,7 +35,11 @@ export const Onboarding = () => {
   const progress = (completedPages / totalPages) * 100;
 
   const CurrentStep = ONBOARDING_COMPONENTS[pageIndex] ?? null;
-  const isLastPage = pageIndex === ONBOARDING_COMPONENTS.length - 1;
+  let showHeader = true;
+  const headerDisallowedRoutes=["call","onboardingcompletion"]
+  if (headerDisallowedRoutes?.includes(getCurrentPage() || "")) {
+    showHeader = false;
+  }
 
   return (
     <RootLayout containerClassName="relative  min-h-[100dvh]  bg-content1 overflow-hidden">
@@ -51,7 +56,7 @@ export const Onboarding = () => {
 
       <div className="relative z-10 w-full  min-h-[100dvh]  flex flex-col">
         {/* Header */}
-        {!isLastPage && (
+        {showHeader && (
           <AnimatePresence mode="popLayout">
             <motion.div
               key={`navbar-${CurrentStep?.name}`}

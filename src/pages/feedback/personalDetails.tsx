@@ -1,5 +1,5 @@
 import { Inputprompt } from "@/components";
-import { EmailContent } from "./components/emailContent";
+import { Content } from "./components/Content";
 import { useFeedBackStore } from "@/store/feedback";
 
 export const PersonalDetails = () => {
@@ -9,8 +9,8 @@ export const PersonalDetails = () => {
   );
 
   return (
-    <div className="w-full  flex flex-col justify-between">
-      <EmailContent
+    <div className="w-full">
+      <Content
         text={"Let’s stay in touch ✉️"}
         description="Enter your email to get progress updates, level insights, and personalized English tips."
       />
