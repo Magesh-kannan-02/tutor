@@ -64,7 +64,7 @@ export const RewardsDetailsCard = ({
             <div
               key={reward.id ?? index}
               className={cn(
-                "rounded-[0.75rem] flex justify-center  items-center w-fit  bg-background-100",
+                "rounded-[0.75rem] flex justify-center items-center w-[70px] bg-background-100",
                 itemClassName
               )}
             >
@@ -77,7 +77,7 @@ export const RewardsDetailsCard = ({
                   {Icon?.type === "svg" ? (
                     <Icon.icon />
                   ) : (
-                    <div className="p-2">
+                    <div>
                       <img src={Icon?.icon as string} width={49} height={58} />
                     </div>
                   )}

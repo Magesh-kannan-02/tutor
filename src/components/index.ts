@@ -25,3 +25,5 @@ export { ProfileAvatar } from "./ui/profilepic/avatar";
 export {ProfileDetailsCard} from './ui/profiledetailscard/index'
 export {Separator} from './atoms/separator/separator'
 export {RewardsDetailsCard} from './ui/rewardsdetailscard/index'
+export {SkillOverviewDrawer} from './ui/skilloverviewdrawer/index'
+

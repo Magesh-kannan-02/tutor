@@ -36,7 +36,7 @@ export const ProfileDetailsCard = ({
         baseclassName
       )} {...props}
     >
-      <div className="flex flex-col gap-[0.8rem] items-center">
+      <div className="flex flex-col gap-[0.5rem] items-center">
         <p className={cn("text-body5 text-content1-foreground font-semibold ",nameClassName)}>
           {name}
         </p>

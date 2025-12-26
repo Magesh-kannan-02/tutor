@@ -20,6 +20,7 @@ import {
   ProfileAvatar,
   ProfileDetailsCard,
   RewardsDetailsCard,
+  SkillOverviewDrawer,
 } from "@/components";
 
 import { Avatarcard } from "@/components/atoms/avatarcard/avatarcard";
@@ -247,6 +248,37 @@ export const PlayGround = () => {
             icontype: "badge",
           },
         ]}
+      />
+      <SkillOverviewDrawer  open
+       skills={[
+        {
+          name:"Vocabulary",
+          progress:78,
+          iconType:"microphone",
+          description:"Crystal clear"
+        },
+         {
+          name:"Vocabulary",
+          progress:52,
+          iconType:"vocabulary",
+          description:"Growing"
+        },
+         {
+          name:"Grammar",
+          progress:78,
+          iconType:"microphone",
+          description:"Improving"
+        },
+         {
+          name:"Fluency",
+          progress:10,
+          iconType:"vocabulary",
+          description:"Smoother"
+        }
+        
+        
+          
+       ]}
       />
     </div>
   );
