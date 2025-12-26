@@ -1,7 +1,7 @@
-export { MicrophoneIcon } from "./microphoneIcon";
-export { CaptionIcon } from "./captionIcon";
-export { CloseIcon } from './closeIcon';
-export { PlayIcon } from './playIcon';
+export { MicrophoneIcon } from "./MicrophoneIcon";
+export { CaptionIcon } from "./CaptionIcon";
+export { CloseIcon } from './CloseIcons';
+export { PlayIcon } from './PlayIcons';
 export { SoundIcon } from './SoundIcon';
 export { EyeOffIcon } from './EyeOffIcon';
 export { ArrowDownIcon } from "./arrowDownIcon";
@@ -12,5 +12,8 @@ export { VocabularyIcon } from './VocabularyIcon';
 export { FluencyIcon } from './FluencyIcon';
 export { LeftArrowIcon } from './LeftArrowIcon';
 export {ArrowRightIcon} from './arrowRightIcon'
-export {ArrowUpIcon} from './arrowUpIcon'
+export {ArrowUpIcon} from './arrowUpIcon';
+export {ProgressBarLine} from './progressBarLine';
+export {HomeIcon} from './homeIcon';
+export {ProfileIcon} from './profileIcon';
 export {ArrowLeftIcon} from './arrowLeftIcon'

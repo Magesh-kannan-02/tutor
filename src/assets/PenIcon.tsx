@@ -3,7 +3,7 @@ interface PenIconProps {
   fill?: string;
 }
 
-export const PenIcon = ({ className = "", fill = "#e5e511" }: PenIconProps) => {
+export const PenIcon = ({ className = "", fill = "#F43538" }: PenIconProps) => {
   return (
     <svg
       className={className}
