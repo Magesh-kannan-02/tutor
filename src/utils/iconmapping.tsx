@@ -266,12 +266,10 @@ export const iconMapping: Record<
     type: "image",
     icon: advancedImg,
   },
-<<<<<<< HEAD
   badge:{
     type:"image",
     icon:BadgeImg
-  }
-=======
+  },
   home:{
       type:'svg',
       icon: HomeIcon
@@ -284,5 +282,4 @@ export const iconMapping: Record<
       type:'image',
       icon: FireImg
     }
->>>>>>> f4a40dbee0417821edf06bbbbbdfc709b027bfa8
 };

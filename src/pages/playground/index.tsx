@@ -266,7 +266,13 @@ export const PlayGround = () => {
           },
         ]}
       />
-      <SkillOverviewDrawer  open
+       <Button
+        buttonText="Open Drawer"
+        textClassName="!text-body text-content1-foreground"
+        handleOnClick={() => setOpen(!open)}
+        baseClassName="rounded-[0.75rem] px-[1.531rem] py-[0.656rem]  bg-gradient-to-b from-primary to-primary-foreground "
+      />
+      <SkillOverviewDrawer progress={65}  open={open} onClose={() => setOpen(false)} 
        skills={[
         {
           name:"Vocabulary",

@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { DrawerComponent } from "../drawer/drawer";
 import { iconMapping } from "@/utils";
 import { Button } from "../button/button";
+import { SemiCircleProgress } from "../semicircleprogress/semicircleprogress";
 
 interface SkillCardProps {
   name: string;
@@ -21,13 +22,25 @@ interface SkillOverviewDrawerProps {
   handleOnClick?: () => void;
   buttonText?: string;
 }
+const ProgressContent = ({ progress }: { progress: number }) => {
+  return (
+    <div className="flex items-center flex-col gap-[0.75rem] pt-10">
+      <p className="text-body4 font-semibold text-primary-200">
+        {progress}%
+      </p>
+      <p className="text-h5  text-secondary-150 ">
+        Progress
+      </p>
+    </div>
+  );
+};
 
 const SkillCard = (item: SkillCardProps) => {
   const Icon = iconMapping[item.iconType];
   return (
     <div className="rounded-[0.625rem] gap-[1rem] flex flex-col  items-start p-[1rem] bg-content1-250  border-content1-100">
       <div className="flex items-center gap-3">
-        <Icon.icon className="w-[10px] h-[16px] shrink-0" />
+        <Icon.icon className="w-[15px] h-[15px] shrink-0" />
         <p className="text-h5 font-semibold text-start tracking-wide text-content1-foreground break-all">
           {item?.name || ""}
         </p>
@@ -80,11 +93,19 @@ export const SkillOverviewDrawer = ({
       content={
         <div
           className={cn(
-            "my-[1.5rem] flex flex-col gap-[2rem] overflow-y-auto",
+            "my-[1.5rem] flex flex-col  gap-[2rem] overflow-y-auto",
             contentClassName
           )}
         >
-          <p>progress bar</p>
+          <SemiCircleProgress
+            value={progress}
+            size={270}
+            strokeWidth={33}
+            gradientEndColor="#63FF7F"
+            gradientStartColor="#035C24"
+            className="bg-transparent mx-auto"
+            content={<ProgressContent progress={progress}/>}
+          />
           <div className="grid grid-cols-2 gap-[1rem]">
             {skills.map((item, index) => (
               <SkillCard key={index} {...item} />
