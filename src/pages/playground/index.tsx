@@ -27,6 +27,7 @@ import {
   Switch,
   StreakProgressCalendar,
   SessionCard,
+  Roadmap,
 } from "@/components";
 
 import { Avatarcard } from "@/components/atoms/avatarcard/avatarcard";
@@ -357,6 +358,8 @@ export const PlayGround = () => {
         leftButtonValue="Try Again"
         rightButtonValue="View Report"
       />
+
+      <Roadmap/>
       
 
     </div>

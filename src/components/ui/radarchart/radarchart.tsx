@@ -11,7 +11,7 @@ import {
   type ScriptableContext,
 } from "chart.js"
 import { Radar } from "react-chartjs-2"
-import { useMemo } from "react"
+import { useMemo, Component, type ErrorInfo, type ReactNode } from "react"
 
 export interface RadarChartProps {
   data?: number[]
@@ -21,6 +21,44 @@ export interface RadarChartProps {
   className?: string
   options?: ChartOptions<"radar">
   labelOffsets?: { x: number; y: number }[]
+}
+
+class ChartErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("Radar Chart Error:", error, errorInfo)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex h-full w-full items-center justify-center rounded-[24px] text-content1-foreground">
+          <span className="text-sm">Cannot load radar</span>
+        </div>
+      )
+    }
+
+    return this.props.children
+  }
+}
+
+const getResponsiveConfig = () => {
+  if (typeof window === "undefined") {
+    return { radius: 26, fontSize: { val: 20, lbl: 16 }, scaleOffset: 1 }
+  }
+  const w = window.innerWidth
+  if (w <= 320) return { radius: 18, fontSize: { val: 14, lbl: 12 }, scaleOffset: 0.8 }
+  if (w <= 375) return { radius: 22, fontSize: { val: 16, lbl: 14 }, scaleOffset: 0.9 }
+  if (w <= 425) return { radius: 26, fontSize: { val: 20, lbl: 16 }, scaleOffset: 1 }
+  return { radius: 26, fontSize: { val: 20, lbl: 16 }, scaleOffset: 1 }
 }
 
 ChartJS.register(
@@ -69,7 +107,7 @@ const roundedGridPlugin: Plugin<"radar"> = {
 
       if (positions.length < 3) return
 
-      const cornerRadius = 26// Border radius for the grid lines
+      const cornerRadius = getResponsiveConfig().radius // Responsive radius
 
       const first = positions[0]
       const last = positions[positions.length - 1]
@@ -104,7 +142,7 @@ const gridBackgroundPlugin: Plugin<"radar"> = {
 
     const numPoints = scale.getLabels().length
     const ticks = scale.ticks
-    const cornerRadius = 26
+    const cornerRadius = getResponsiveConfig().radius // Responsive radius
 
     ctx.save()
 
@@ -194,8 +232,11 @@ const customLabelsPlugin: Plugin<"radar"> = {
       const offsets = chart.options.plugins?.customLabelsPlugin?.offsets || [];
       const offset = offsets[index] || { x: 0, y: 0 };
       
-      const xOffset = offset.x;
-      const yOffset = offset.y;
+      const config = getResponsiveConfig()
+      
+      // Apply scale offset
+      const xOffset = offset.x * config.scaleOffset;
+      const yOffset = offset.y * config.scaleOffset;
 
       const finalX = point.x + xOffset;
       const finalY = point.y + yOffset;
@@ -204,19 +245,21 @@ const customLabelsPlugin: Plugin<"radar"> = {
 
       const fontFamily = window.getComputedStyle(document.body).fontFamily || "'DM Sans', sans-serif";
       // Draw Value (Green, Bold)
-      ctx.font = `700 20px ${fontFamily}`;
+      ctx.font = `700 ${config.fontSize.val}px ${fontFamily}`;
       ctx.fillStyle = "#B8FF5F";
-      ctx.fillText(`${value}%`, finalX, finalY - 15);
+      ctx.fillText(`${value}%`, finalX, finalY - (15 * config.scaleOffset));
 
       // Draw Label (Grey, Regular)
-      ctx.font = `500 16px ${fontFamily}`;
+      ctx.font = `500 ${config.fontSize.lbl}px ${fontFamily}`;
       ctx.fillStyle = "#C0C0C0";
-      ctx.fillText(label, finalX, finalY + 10);
+      ctx.fillText(label, finalX, finalY + (10 * config.scaleOffset));
     })
 
     ctx.restore();
   },
 }
+
+const defaultPlugins = [gridBackgroundPlugin, roundedGridPlugin, customLabelsPlugin]
 
 export const RadarChart = ({ 
   data: dataProp = [75, 50, 70, 45, 85], 
@@ -252,22 +295,31 @@ export const RadarChart = ({
           const top = scale.yCenter - scale.drawingArea
           const bottom = scale.yCenter + scale.drawingArea
 
+          // Safety check for finite values
+          if (!Number.isFinite(top) || !Number.isFinite(bottom)) {
+             return "rgba(184,255,95,0.25)"
+          }
+
           //  LINEAR gradient 
-          const gradient = ctx.createLinearGradient(
-            0,
-            top,
-            0,
-            bottom
-          )
+          try {
+            const gradient = ctx.createLinearGradient(
+              0,
+              top,
+              0,
+              bottom
+            )
 
-          // EXACT image-like stops
-          gradient.addColorStop(0.0, "rgba(184,255,95,0.95)") // bright top
-          gradient.addColorStop(0.25, "rgba(165,230,110,0.65)")
-          gradient.addColorStop(0.55, "rgba(140,190,120,0.30)")
-          gradient.addColorStop(0.75, "rgba(140,190,120,0.12)")
-          gradient.addColorStop(1.0, "rgba(244, 245, 243, 0.02)") // fade bottom
+            // EXACT image-like stops
+            gradient.addColorStop(0.0, "rgba(184,255,95,0.95)") // bright top
+            gradient.addColorStop(0.25, "rgba(165,230,110,0.65)")
+            gradient.addColorStop(0.55, "rgba(140,190,120,0.30)")
+            gradient.addColorStop(0.75, "rgba(140,190,120,0.12)")
+            gradient.addColorStop(1.0, "rgba(244, 245, 243, 0.02)") // fade bottom
 
-          return gradient
+            return gradient
+          } catch {
+             return "rgba(184,255,95,0.25)"
+          }
         },
 
         borderColor: "#B8FF5F",
@@ -311,7 +363,6 @@ export const RadarChart = ({
       legend: {
         display: false,
       },
-      // Pass offsets to the plugin via options
       customLabelsPlugin: {
         offsets: labelOffsets
       }
@@ -321,11 +372,13 @@ export const RadarChart = ({
 
   return (
     <div style={{ height, width }} className={className} {...rest}>
-      <Radar
-        data={data}
-        options={options}
-        plugins={[gridBackgroundPlugin, roundedGridPlugin, customLabelsPlugin]}
-      />
+      <ChartErrorBoundary>
+        <Radar
+          data={data}
+          options={options}
+          plugins={defaultPlugins}
+        />
+      </ChartErrorBoundary>
     </div>
   )
 }

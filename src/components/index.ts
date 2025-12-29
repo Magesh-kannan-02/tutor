@@ -31,3 +31,4 @@ export { SessionCard } from './ui/sessioncard/sessioncard';
 export { Input } from "./ui/input/input";
 export {RevealOnScroll} from './ui/animations/revealOnScroll'
 export {AnimatedScreen} from './ui/animations/screenAnimation'
+export {Roadmap} from './ui/roadmap/roadmap';

@@ -71,7 +71,7 @@ export const StreakProgressCalendar = ({
   return (
     <div
       className={cn(
-        "rounded-2xl bg-content1-foreground/15 px-5 py-5 text-content1-foreground ",
+        "rounded-2xl bg-content1-foreground/15 px-5 py-5 text-content1-foreground w-full justify-between",
         className
       )}
       {...rest}
@@ -82,7 +82,7 @@ export const StreakProgressCalendar = ({
       </div>
 
       {/* Days */}
-      <div className={cn("grid grid-cols-7 gap-5 text-h6 font-normal !text-secondary-150 !text-center mb-3", daysClassName)}>
+      <div className={cn("grid grid-cols-7 gap-5 text-h6 font-normal !text-secondary-150  mb-3 place-items-center", daysClassName)}>
         {daysLabel.map((day) => (
           <span key={day}>{day}</span>
         ))}
@@ -91,7 +91,7 @@ export const StreakProgressCalendar = ({
       {/* Grid */}
       <div className={cn("grid gap-3", gridClassName)}>
         {grid?.map((row, rowIndex) => (
-          <div key={rowIndex} className="grid grid-cols-7 gap-5">
+          <div key={rowIndex} className="grid grid-cols-7 gap-5 place-items-center">
             {row.map((cell) => (
               <div
                 key={cell.id}
