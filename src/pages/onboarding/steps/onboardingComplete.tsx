@@ -28,7 +28,7 @@ export const OnboardingComplete = ({
             <img src={TickImg} alt="tick" width={160} height={160} />
             <RevealOnScroll y={32}>
               <p className="text-body4 text-center text-content1-foreground leading-snug pt-[1.25rem]">
-                👏 Nice! <br/> You just practiced for{" "}
+                👏 Nice! <br /> You just practiced for{" "}
                 <span className="text-primary-200">{time}.</span>
               </p>
             </RevealOnScroll>
@@ -52,7 +52,7 @@ export const OnboardingComplete = ({
             </div>
           </RevealOnScroll>
         </div>
-       
+
         <Button
           buttonText="Continue"
           variant="secondary"
@@ -66,6 +66,10 @@ export const OnboardingComplete = ({
       <Lottie
         animationData={CompletionAnimation}
         loop={false}
+        style={{ width: "100%", height: "100%" }}
+        rendererSettings={{
+          preserveAspectRatio: "xMidYMid slice",
+        }}
         className="absolute inset-0 z-20 pointer-events-none"
       />
     </div>

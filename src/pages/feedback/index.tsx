@@ -1,6 +1,6 @@
 import { BackgroundBlur } from "@/assets";
 import { AnimatedScreen, Button } from "@/components";
-import { RootLayout } from "@/layouts";
+import { RootLayout } from "@/layouts/withoutNavBar";
 import { FeedbackHeader } from "./components/header";
 import { useFlowStore } from "@/store/flow";
 import { Rating } from "./rating";
@@ -12,8 +12,10 @@ import React from "react";
 import { FLOW } from "@/utils/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { CreatePassword } from "./createPassword";
+import { useAccountStore } from "@/store/accounts";
 
 export const FeedBack = () => {
+
   const FeedBackComponents: Record<any, any> = {
     rating: {
       title: "rating",
@@ -44,15 +46,17 @@ export const FeedBack = () => {
       buttontext: "Verify & Continue",
       content: <Verification />,
     },
-    createPassword:{
-       title: "createPassword",
+    createPassword: {
+      title: "createPassword",
       hasButton: true,
-      content:<CreatePassword />,
+      content: <CreatePassword title="Create your password" description="Enter a strong password to secure your account."
+      field="password" />,
       buttontext: "Continue",
-    }
+    },
   };
 
   const { stepIndex, pageIndex, next, back, direction } = useFlowStore();
+  const { validatePassword } = useAccountStore();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
   const step = FLOW[stepIndex];
@@ -66,9 +70,23 @@ export const FeedBack = () => {
       scrollContainerRef.current.scrollTop = 0;
     }
   }, [currentPageKey]);
-
+   
   const handleButtonClick = () => {
-    next();
+    switch (currentPageKey) {
+      case "createPassword":
+         
+         if(validatePassword()){
+            next();
+         }
+
+        break;
+
+      default: 
+         next();
+
+    }
+
+    
   };
   return (
     <RootLayout
@@ -106,12 +124,9 @@ export const FeedBack = () => {
           <AnimatedScreen
             motionKey={`content-${currentPageKey}`}
             direction={direction}
-            className="w-full !h-full" 
+            className="w-full !h-full"
           >
-           
-        
             {currentPage?.content}
-             
           </AnimatedScreen>
         </AnimatePresence>
       </div>

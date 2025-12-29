@@ -51,7 +51,7 @@ export const ProfileAvatar = React.forwardRef<
 
     return (
       <div 
-        className="relative flex items-center justify-center"
+        className="relative shrink-0 flex items-center justify-center"
         style={{ width: size, height: size }} {...props}
       >
         {/* GREEN RING */}

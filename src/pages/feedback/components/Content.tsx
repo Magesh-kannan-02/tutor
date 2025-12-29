@@ -15,7 +15,7 @@ export const Content = ({
   image,
 }: EmailContentProps) => {
   return (
-    <div className="flex flex-col items-center mt-[clamp(1.5rem,4vh,4rem)]">
+    <div className="flex flex-col items-center mt-auto">
       {/* Static image */}
       <img src={image || EmailImg} alt="email" width={160} height={160} />
 

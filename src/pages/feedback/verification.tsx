@@ -1,16 +1,17 @@
-
 import { Inputprompt } from "@/components";
 import { Content } from "./components/Content";
 
-import { useFeedBackStore } from "@/store/feedback";
+import { useAccountStore } from "@/store/accounts";
 import React from "react";
 
 export const Verification = () => {
-
-
-  const personalInfo = useFeedBackStore((state) => state.personalInfo);
-  const updatePersonalInfo = useFeedBackStore(
+  const personalInfo = useAccountStore((state) => state.personalInfo);
+  const updatePersonalInfo = useAccountStore(
     (state) => state.updatePersonalInfo
+  );
+
+  const personalInfoErrors = useAccountStore(
+    (state) => state.personalInfoErrors
   );
 
   const [timeLeft, setTimeLeft] = React.useState(30);
@@ -23,7 +24,7 @@ export const Verification = () => {
 
     return () => clearInterval(timer);
   }, [timeLeft]);
-  const code = useFeedBackStore((state) => state.personalInfo.verficationCode);
+  const code = useAccountStore((state) => state.personalInfo.verficationCode);
 
   return (
     <div className="w-full">
@@ -42,6 +43,7 @@ export const Verification = () => {
           placeholder="Enter your Code"
           type="text"
           value={code}
+          error={personalInfoErrors.verficationCode}
           onChange={(code) => updatePersonalInfo("verficationCode", code)}
         />
 

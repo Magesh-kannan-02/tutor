@@ -1,4 +1,4 @@
-import { RootLayout } from "@/layouts";
+import { RootLayout } from "@/layouts/withoutNavBar";
 import { BackgroundBlur } from "@/assets";
 
 import {

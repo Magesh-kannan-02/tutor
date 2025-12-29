@@ -1,38 +1,37 @@
-import React, { useState } from "react"
-import { cn } from "@/lib/utils"
-import { iconMapping } from "@/utils"
-
+import React from "react";
+import { cn } from "@/lib/utils";
+import { iconMapping } from "@/utils";
 
 interface NavItemConfig {
-  key: string
-  label: string
-  icontype: string
-  iconName?: string
+  key: string;
+  label: string;
+  icontype: string;
+  iconName?: string;
+  path: string;
 }
 
 interface NavbarProps {
-  items: NavItemConfig[]
-  defaultActive?: string
-  onChange?: (key: string) => void
-  className?: string
-  iconClassname?: string
-  imageClassname?: string
+  items: NavItemConfig[];
+  defaultActive?: string;
+  onChange?: (key: string) => void;
+  className?: string;
+  iconClassname?: string;
+  imageClassname?: string;
+  activePath?: string;
 }
 
 export const Navbar = ({
   items,
-  defaultActive = items[0]?.key,
+
   onChange,
   className,
   iconClassname,
   imageClassname,
+  activePath = "/",
 }: NavbarProps) => {
-  const [active, setActive] = useState<string>(defaultActive)
-
-  const handleClick = (key: string) => {
-    setActive(key)
-    onChange?.(key)
-  }
+  const handleClick = (path: string) => {
+    onChange?.(path);
+  };
 
   return (
     <div
@@ -46,29 +45,29 @@ export const Navbar = ({
         <React.Fragment key={item.key}>
           <NavItem
             label={item.label}
-            active={active === item.key}
+            active={item.key === activePath}
             icontype={item.icontype}
             iconName={item.iconName}
             iconClassname={iconClassname}
             imageClassname={imageClassname}
-            onClick={() => handleClick(item.key)}
+            onClick={() => handleClick(item.path)}
           />
 
           {index !== items.length - 1 && <Divider />}
         </React.Fragment>
       ))}
     </div>
-  )
-}
+  );
+};
 
 interface NavItemProps {
-  label: string
-  icontype: string
-  iconName?: string
-  active?: boolean
-  onClick?: () => void
-  iconClassname?: string
-  imageClassname?: string
+  label: string;
+  icontype: string;
+  iconName?: string;
+  active?: boolean;
+  onClick?: () => void;
+  iconClassname?: string;
+  imageClassname?: string;
 }
 
 const NavItem = ({
@@ -80,24 +79,17 @@ const NavItem = ({
   iconClassname,
   imageClassname,
 }: NavItemProps) => {
-  const Icon = iconMapping[icontype]
+  const Icon = iconMapping[icontype];
 
   const renderIcon = () => {
-    if (!Icon) return null
+    if (!Icon) return null;
 
     if (Icon.type === "svg") {
       return (
-        <div
-          className={cn(
-            "mb-1",
-            iconClassname
-          )}
-        >
-          <Icon.icon
-            fill={active ? "#B8FF5F" : "#C0C0C0"}
-          />
+        <div className={cn("mb-1", iconClassname)}>
+          <Icon.icon fill={active ? "#B8FF5F" : "#C0C0C0"} />
         </div>
-      )
+      );
     }
 
     if (Icon.type === "image") {
@@ -105,16 +97,13 @@ const NavItem = ({
         <img
           src={Icon.icon as string}
           alt={iconName}
-          className={cn(
-            "mb-1 w-6 h-6 object-contain",
-            imageClassname
-          )}
+          className={cn("mb-1 w-6 h-6 object-contain", imageClassname)}
         />
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <button
@@ -135,9 +124,7 @@ const NavItem = ({
         {label}
       </span>
     </button>
-  )
-}
+  );
+};
 
-const Divider = () => (
-  <div className="h-full w-[0.5px] bg-[#56565659]" />
-)
+const Divider = () => <div className="h-full w-[0.5px] bg-[#56565659]" />;

@@ -1,10 +1,10 @@
 import { Inputprompt } from "@/components";
 import { Content } from "./components/Content";
-import { useFeedBackStore } from "@/store/feedback";
+import { useAccountStore } from "@/store/accounts";
 
 export const PersonalDetails = () => {
-  const personalInfo = useFeedBackStore((state) => state.personalInfo);
-  const updatePersonalInfo = useFeedBackStore(
+  const personalInfo = useAccountStore((state) => state.personalInfo);
+  const updatePersonalInfo = useAccountStore(
     (state) => state.updatePersonalInfo
   );
 

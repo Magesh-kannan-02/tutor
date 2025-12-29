@@ -18,34 +18,6 @@ export const Rating = () => {
     }, 250);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 140,
-        damping: 16,
-        mass: 0.6,
-      },
-    },
-  };
-
   return (
     <div className="w-[100%] px-[0.2rem]">
       {/* content */}

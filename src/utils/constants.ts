@@ -8,6 +8,16 @@ export const ROUTES = {
   ONBOARDING: "/onboarding",
   FEEDBACK: "/feedback",
   REPORT: "/report",
+  ACCOUNTS:"/accounts",
+  DELETE_ACCOUNT:"/delete-account",
+  CHANGE_NAME:"accounts/change-name",
+  CHANGE_EMAIL:"accounts/change-email",
+  CHANGE_PASSWORD:"accounts/change-password",
+  PROFILE:"/profile",
+  VERIFICATION:"accounts/verification",
+  VERIFIED:"accounts/verified",
+  OLD_PASSWORD:"accounts/old-password",
+
 
 };
 export const STEPS = {

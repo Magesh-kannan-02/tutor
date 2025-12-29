@@ -56,7 +56,7 @@ export const RewardsDetailsCard = ({
       </div>
 
       {/* Rewards List */}
-      <div className="flex w-full gap-[0.8rem] flex-wrap">
+      <div className="flex w-[100%] gap-[0.8rem] flex-wrap">
         {visibleRewards.map((reward, index) => {
           const Icon = iconMapping[reward?.icontype ?? ""];
 

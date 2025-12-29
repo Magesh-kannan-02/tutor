@@ -1,6 +1,6 @@
 import { BackgroundBlur, LeftArrowIcon } from "@/assets";
 import { AnimatedScreen, ProgressBar } from "@/components";
-import { RootLayout } from "@/layouts";
+import { RootLayout } from "@/layouts/withoutNavBar";
 
 import { useFlowStore } from "@/store/flow";
 import { FLOW } from "@/utils/constants";

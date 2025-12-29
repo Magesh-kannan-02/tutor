@@ -354,17 +354,17 @@ export const PlayGround = () => {
       <Navbar
         defaultActive="home"
         items={[
-          {
+          { path:"/",
             key: "home",
             label: "Home",
             icontype: "home",
           },
-          {
+          { path:"/practice",
             key: "practice",
             label: "Practice",
             icontype: "microphone",
           },
-          {
+          { path:"/profile",
             key: "profile",
             label: "Profile",
             icontype: "profile",
