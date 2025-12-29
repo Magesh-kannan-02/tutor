@@ -3,11 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FLOW, KEYS, ONBOARDING_PAGES, STEPS } from "@/utils/constants";
 import { useFlowStore } from "@/store/flow";
 import { Report } from "../report";
-import { Completion } from "../feedback/completion";
-import { Verified } from "../feedback/verified";
+// import { Completion } from "../feedback/completion";
+// import { Verified } from "../feedback/verified";
 
-import { PersonalDetails } from "../feedback/personalDetails";
-import { Verification } from "../feedback/verification";
+// import { PersonalDetails } from "../feedback/personalDetails";
+// import { Verification } from "../feedback/verification";
 
 import { Onboarding } from "../onboarding";
 import { FeedBack } from "../feedback";
@@ -35,6 +35,10 @@ export const FlowRenderer = () => {
       [ONBOARDING_PAGES.LEVEL]: <Onboarding />,
       [ONBOARDING_PAGES.CONTEXT]: <Onboarding />,
       [ONBOARDING_PAGES.CALL]: <Onboarding />,
+      [ONBOARDING_PAGES.LEVELUP]: <Onboarding />,
+      [ONBOARDING_PAGES.GOAL]: <Onboarding />,
+      [ONBOARDING_PAGES.CORRECTION]: <Onboarding />,
+      [ONBOARDING_PAGES.FLUENTLY]: <Onboarding />,
     },
 
     [KEYS.FEEDBACK]: {

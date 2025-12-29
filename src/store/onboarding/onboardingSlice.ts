@@ -121,6 +121,26 @@ const initialMockData = {
     { label: "Career Training", value: "career" },
     { label: "Daily Conversation", value: "daily" },
   ],
+
+  goalOptions: [5, 10, 15, 20, 30, 40],
+
+  correctionOptions: [
+    "Instant feedback during speaking",
+    "Corrections after I finish",
+    "Correct only major errors",
+    "Focus on flow, not mistakes",
+  ],
+
+  fluentlyOptions: [
+    { label: "LinkedIn", icon: "linkedIn" },
+    { label: "Google", icon: "google" },
+    { label: "Ads", icon: "announce" },
+    { label: "Youtube", icon: "youtube" },
+    { label: "Instagram", icon: "instagram" },
+    { label: "Facebook", icon: "facebook" },
+    { label: "Referred by Friends", icon: "users" },
+    { label: "Others", icon: "search" },
+  ],
 };
 
 /* ================= INITIAL STATE ================= */
@@ -138,11 +158,14 @@ const initialState: OnboardingState = {
   feelSameWay: null,
   contextCategory: undefined,
   selectedContext: "Tour Guide",
+  dailyGoal: null,
+  correctionStyle: null,
+  fluentlySource: null,
 
   ...initialMockData,
 
   currentStep: 1,
-  totalSteps: 12,
+  totalSteps: 18,
   isCompleted: false,
   percentage: 40,
   statsValue: 7,
@@ -167,6 +190,9 @@ export const createOnboardingSlice: StateCreator<
   setFeelSameWay: (feelSameWay) => set((s) => { s.feelSameWay = feelSameWay; }),
   setContextCategory: (contextCategory) => set((s) => { s.contextCategory = contextCategory; }),
   setSelectedContext: (selectedContext) => set((s) => { s.selectedContext = selectedContext; }),
+  setDailyGoal: (dailyGoal) => set((s) => { s.dailyGoal = dailyGoal; }),
+  setCorrectionStyle: (correctionStyle) => set((s) => { s.correctionStyle = correctionStyle; }),
+  setFluentlySource: (fluentlySource) => set((s) => { s.fluentlySource = fluentlySource; }),
 
   toggleSkill: (skillId) =>
     set((s) => {
@@ -246,6 +272,9 @@ export const createOnboardingSlice: StateCreator<
       s.feelSameWay = null;
       s.contextCategory = undefined;
       s.selectedContext = "Tour Guide";
+      s.dailyGoal = null;
+      s.correctionStyle = null;
+      s.fluentlySource = null;
     }),
 
   isStepValid: (step) => {
@@ -273,6 +302,9 @@ export const createOnboardingSlice: StateCreator<
     feelSameWay: get().feelSameWay,
     contextCategory: get().contextCategory,
     selectedContext: get().selectedContext,
+    dailyGoal: get().dailyGoal,
+    correctionStyle: get().correctionStyle,
+    fluentlySource: get().fluentlySource,
   }),
 
   openCallDrawer: (duration) =>

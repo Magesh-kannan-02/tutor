@@ -34,7 +34,7 @@ export const Onboarding = () => {
   const progress = (completedPages / totalPages) * 100;
 
   const CurrentStep = ONBOARDING_COMPONENTS[pageIndex] ?? null;
-  const isLastPage = pageIndex === ONBOARDING_COMPONENTS.length - 1;
+  const isLastPage = pageIndex === ONBOARDING_COMPONENTS.length ;
 
   return (
     <RootLayout containerClassName="relative  min-h-[100dvh]  bg-content1 overflow-hidden">

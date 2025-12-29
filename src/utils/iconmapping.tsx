@@ -50,6 +50,13 @@ import diamondImg from "@/assets/images/diamond.png";
 import intermediateImg from "@/assets/images/intermediate.png";
 import upperIntermediateImg from "@/assets/images/upperIntermediate.png";
 import advancedImg from "@/assets/images/advanced.png";
+import facebookImg from "@/assets/images/facebook.png";
+import googleImg from "@/assets/images/google.png";
+import instagramImg from "@/assets/images/instagram.png";
+import usersImg from "@/assets/images/users.png";
+import youtubeImg  from "@/assets/images/youtube.png";
+import announceImg from "@/assets/images/announce.png";
+import linkedInImg from "@/assets/images/linkedin.png";
 
 import FireImg from '@/assets/images/fire.png';
 export type SVGIcon = React.ComponentType<{
@@ -277,5 +284,33 @@ export const iconMapping: Record<
     fire:{
       type:'image',
       icon: FireImg
-    }
+    },
+    facebook:{
+      type:'image',
+      icon: facebookImg
+    },
+    google:{
+      type:'image',
+      icon: googleImg
+    },
+    instagram:{
+      type:'image',
+      icon: instagramImg
+    },
+    users:{
+      type:'image',
+      icon: usersImg
+    },
+    announce:{
+      type:'image',
+      icon: announceImg
+    },
+    linkedIn:{
+      type:'image',
+      icon: linkedInImg
+    },
+    youtube:{
+      type:'image',
+      icon: youtubeImg
+    },
 };

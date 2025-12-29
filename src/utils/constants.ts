@@ -43,6 +43,10 @@ export const ONBOARDING_PAGES = {
   LEVEL: "level",
   CONTEXT: "context",
   CALL: "call",
+  LEVELUP:"levelup",
+  GOAL:"goal",
+  CORRECTION:"correction",
+  FLUENTLY:"fluently"
 } as const;
 
 
@@ -66,6 +70,10 @@ export const FLOW = [
       ONBOARDING_PAGES.LEVEL,
       ONBOARDING_PAGES.CONTEXT,
       ONBOARDING_PAGES.CALL,
+      ONBOARDING_PAGES.LEVELUP,
+      ONBOARDING_PAGES.GOAL,
+      ONBOARDING_PAGES.CORRECTION,
+      ONBOARDING_PAGES.FLUENTLY
     ] as const,
   },
   {

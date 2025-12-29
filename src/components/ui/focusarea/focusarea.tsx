@@ -94,7 +94,7 @@ export const FocusArea = ({
   return (
     <div
       className={cn(
-        "w-full max-w-[360px] rounded-2xl px-4 py-5 bg-content1-foreground/15 border border-background-50",
+        "w-full rounded-2xl px-4 py-5 bg-content1-foreground/15 border border-background-50",
         className
       )}
     >

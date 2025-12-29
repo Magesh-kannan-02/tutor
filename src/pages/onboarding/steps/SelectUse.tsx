@@ -11,7 +11,7 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
     useOnboardingStore();
 
   return (
-    <div>
+    <div className="flex flex-col justify-between  min-h-full">
       
       {/* CONTENT */}
       <div className="flex-1 overflow-y-auto">

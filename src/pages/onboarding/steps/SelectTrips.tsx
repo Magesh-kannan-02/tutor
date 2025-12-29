@@ -10,12 +10,12 @@ export const SelectTrips = ({ onNext }: SelectTripsProps) => {
   const { tripOptions, selectedTrips, toggleTrip } = useOnboardingStore();
 
   return (
-    <div>
-      <div className="flex-1 overflow-y-auto px-4 pt-4 min-h-[100dvh]">
+    <div className="flex flex-col min-h-full justify-between items-center w-full">
+      <div className="flex-1 overflow-y-auto px-4 pt-4 ">
         <div className="flex flex-col items-center">
             <RevealOnScroll>
 
-          <p className="text-body3 font-semibold text-content1-foreground text-center max-w-[22rem] mb-10 leading-8">
+          <p className="text-body3 font-semibold text-content1-foreground text-center mb-10 leading-8">
             What trips you up the most in conversations?
           </p>
             </RevealOnScroll>
@@ -58,9 +58,9 @@ export const SelectTrips = ({ onNext }: SelectTripsProps) => {
 
       {/* STICKY FOOTER */}
       {selectedTrips.length > 0 && (
-        <div className="sticky bottom-0 bg-background-200 pt-5 pb-2 px-4
-            [mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]
-            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]">
+        <div className="sticky bottom-0 bg-background-200 pt-5 pb-2 px-4 w-full 
+            [mask-image:linear-gradient(to_bottom,transparent,black_25px,black)]
+            [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_25px,black)]">
           <Button
             buttonText="Continue"
             variant="secondary"

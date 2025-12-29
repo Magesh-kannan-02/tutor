@@ -7,6 +7,7 @@ export type EnglishLevel =
   | "upperIntermediate"
   | "advanced";
 export type FeelOption = "no" | "maybe" | "yes";
+export type Goal = number;
 
 // Generic option
 export interface Option<T = string> {
@@ -20,6 +21,11 @@ export interface Option<T = string> {
 export interface AgeGroupOption {
   id: AgeGroup;
   label: string;
+}
+
+export interface FluentlyOption {
+  label: string;
+  icon: string;
 }
 
 export interface GenderOption extends Option<Gender> {
@@ -64,7 +70,7 @@ export interface FeelOptionItem extends Option<FeelOption> {
   icon: string;
 }
 
-/* ✅ NEW: Explicit selections payload */
+/* Explicit selections payload */
 export interface OnboardingSelections {
   ageGroup: AgeGroup | null;
   gender: Gender | null;
@@ -77,7 +83,9 @@ export interface OnboardingSelections {
   englishUseCases: string[];
   feelSameWay: FeelOption | null;
   contextCategory: string | undefined;
-  selectedContext: string;
+  dailyGoal: Goal | null;
+  correctionStyle: string | null;
+  fluentlySource: string | null;
 }
 
 export interface OnboardingState {
@@ -94,6 +102,9 @@ export interface OnboardingState {
   feelSameWay: FeelOption | null;
   contextCategory: string | undefined;
   selectedContext: string;
+  dailyGoal: Goal | null;
+  correctionStyle: string | null;
+  fluentlySource: string | null;
 
   // DATA
   ageGroups: AgeGroupOption[];
@@ -108,6 +119,9 @@ export interface OnboardingState {
   feelOptions: FeelOptionItem[];
   contextChips: string[];
   contextCategories: { label: string; value: string }[];
+  goalOptions: number[];
+  correctionOptions: string[];
+  fluentlyOptions: FluentlyOption[];
 
   // UI / PROGRESS
   currentStep: number;
@@ -128,6 +142,9 @@ export interface OnboardingActions {
   setFeelSameWay: (feel: FeelOption) => void;
   setContextCategory: (category: string | undefined) => void;
   setSelectedContext: (context: string) => void;
+  setDailyGoal: (goal: Goal) => void;
+  setCorrectionStyle: (style: string) => void;
+  setFluentlySource: (source: string) => void;
 
   toggleSkill: (skillId: string) => void;
   toggleConfidenceIssue: (issue: string) => void;

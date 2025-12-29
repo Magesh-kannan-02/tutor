@@ -14,7 +14,7 @@ export const SelectDifficulty = ({ onNext }: SelectDifficultyProps) => {
   } = useOnboardingStore();
 
   return (
-    <div >
+    <div className="flex flex-col justify-between  min-h-full">
       {/*  CONTENT */}
       <div className="flex-1 overflow-y-auto px-4  pt-5">
         <div className="flex flex-col items-center gap-4 ">
