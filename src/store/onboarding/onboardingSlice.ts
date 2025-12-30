@@ -16,8 +16,8 @@ import type {
 import upperIntermediateImg from "@/assets/images/upperIntermediate.png";
 import greenTickImg from "@/assets/images/greenTick.png";
 import aimImg from "@/assets/images/aim.png";
-import beginnerImg from "@/assets/images/beginner.png";
-import aiCallImg from "@/assets/images/aiCall.png";
+import ComputerImg from "@/assets/images/computer.png";
+import GoalImg from "@/assets/images/goal.png";
 
 /* ================= MOCK DATA ================= */
 
@@ -204,13 +204,13 @@ const initialState: OnboardingState = {
       id: "goal",
       title: "Goal",
       description: "Speak naturally and confidently at work",
-      icon: beginnerImg,
+      icon: GoalImg,
     },
     {
       id: "tutor",
       title: "Tutor Style",
       description: "Cheerful - like having your favorite",
-      icon: aiCallImg,
+      icon: ComputerImg,
     },
   ],
 };
