@@ -10,8 +10,8 @@ export const SelectTrips = ({ onNext }: SelectTripsProps) => {
   const { tripOptions, selectedTrips, toggleTrip } = useOnboardingStore();
 
   return (
-    <div className="flex flex-col min-h-full justify-between items-center w-full">
-      <div className="flex-1 overflow-y-auto px-4 pt-4 ">
+    <div className="h-full relative overflow-hidden">
+      <div className="h-full overflow-y-auto px-4 pb-28 pt-4 ">
         <div className="flex flex-col items-center">
             <RevealOnScroll>
 
@@ -58,7 +58,7 @@ export const SelectTrips = ({ onNext }: SelectTripsProps) => {
 
       {/* STICKY FOOTER */}
       {selectedTrips.length > 0 && (
-        <div className="sticky bottom-0 bg-background-200 pt-5 pb-2 px-4 w-full 
+        <div className="absolute w-full bottom-0 bg-background-200 pt-5 pb-2 px-4 w-full 
             [mask-image:linear-gradient(to_bottom,transparent,black_25px,black)]
             [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_25px,black)]">
           <Button

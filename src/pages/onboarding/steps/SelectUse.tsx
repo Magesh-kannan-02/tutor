@@ -11,10 +11,10 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
     useOnboardingStore();
 
   return (
-    <div className="flex flex-col justify-between  min-h-full">
+    <div className="h-full relative overflow-hidden">
       
       {/* CONTENT */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="h-full overflow-y-auto pb-28">
         <div className="flex flex-col items-center gap-6 px-4 pt-4">
           <RevealOnScroll>
 
@@ -67,7 +67,7 @@ export const SelectUse = ({ onNext }: SelectUseProps) => {
 
       {/* STICKY FOOTER */}
       {englishUseCases.length > 0 && (
-        <div className="sticky bottom-0 pt-5 pb-2 bg-background-200 backdrop-blur-md px-4 
+        <div className="absolute w-full bottom-0 pt-5 pb-2 bg-background-200 backdrop-blur-md px-4 
             [mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]
             [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]">
           <Button

@@ -29,9 +29,9 @@ export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
   };
 
   return (
-    <div className="flex flex-col justify-between min-h-full">
+    <div className="h-full relative overflow-hidden">
       {/*CONTENT */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="h-full overflow-y-auto pb-28">
         <div className="flex flex-col items-center gap-6 px-4 pt-4 ">
            <RevealOnScroll>
 
@@ -82,7 +82,7 @@ export const SelectConfidence = ({ onNext }: SelectConfidenceProps) => {
 
       {/* STICKY FOOTER */}
       {confidenceIssues.length > 0 && (
-        <div className="stick bottom-0 bg-background-200 px-4 pb-2 pt-5
+        <div className="absolute w-full bottom-0 bg-background-200 px-4 pb-2 pt-5
             [mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]
             [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15px,black)]">
           <Button
