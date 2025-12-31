@@ -22,7 +22,9 @@ export const CreatePassword = ({
   title = "Create your password",
   description = "Enter a strong password to secure your account.",
 }: CreatePasswordProps) => {
-  const { personalInfo, updatePersonalInfo, personalInfoErrors } =
+  const { personalInfo, updatePersonalInfo, 
+    // personalInfoErrors 
+  } =
     useAccountStore();
   return (
     <div

@@ -12,7 +12,7 @@ import React from "react";
 import { FLOW } from "@/utils/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { CreatePassword } from "./createPassword";
-import { useAccountStore } from "@/store/accounts";
+// import { useAccountStore } from "@/store/accounts";
 
 export const FeedBack = () => {
 
@@ -56,7 +56,7 @@ export const FeedBack = () => {
   };
 
   const { stepIndex, pageIndex, next, back, direction } = useFlowStore();
-  const { validatePassword } = useAccountStore();
+  // const { validatePassword } = useAccountStore();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
   const step = FLOW[stepIndex];
