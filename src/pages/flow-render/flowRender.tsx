@@ -67,7 +67,7 @@ export const FlowRenderer = () => {
       [STEPS.FLUENCY]: <Report />,
       [STEPS.PRONUNCIATION]: <Report />,
       [STEPS.GRAMMAR]: <Report />,
-      [STEPS.VOCABULARY]: <Report onComplete={() => navigate("/home")} />
+      [STEPS.VOCABULARY]: <Report onComplete={() => navigate("/")} />
     },
   };
 

@@ -109,7 +109,7 @@ interface ReportProps {
   buttonText?: string;
 }
 
-export const Report = ({ homeRoute = "/home", onComplete, buttonText }: ReportProps) => {
+export const Report = ({ homeRoute = "/", onComplete, buttonText }: ReportProps) => {
   const { stepIndex, pageIndex, next, direction } = useFlowStore();
   // const { progress } = useOnboardingStore();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
