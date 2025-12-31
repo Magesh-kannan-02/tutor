@@ -4,7 +4,7 @@ import { RootLayout } from "@/layouts/withoutNavBar";
 
 import { useFlowStore } from "@/store/flow";
 import { useOnboardingStore } from "@/store/onboarding";
-import { FLOW } from "@/utils/constants";
+import { FLOW, ROUTES } from "@/utils/constants";
 import { ONBOARDING_COMPONENTS } from "./onboardingSteps";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -30,7 +30,8 @@ export const Onboarding = () => {
     if (pageIndex > 0) {
       back();
     } else {
-      navigate("/select-test");
+      // navigate("/select-test");
+      navigate(ROUTES.SELECT_TEST);
     }
   };
 
