@@ -24,7 +24,7 @@ export const SelectContext = ({ onNext }: SelectContextProps) => {
       {/* TOP CONTENT */}
       <div className="flex flex-col items-center gap-5 mt-4">
            <RevealOnScroll >
-        <div className="relative w-24 h-24  place-self-center">
+        <div className="relative h-24">
 
           
           <img
@@ -47,7 +47,7 @@ export const SelectContext = ({ onNext }: SelectContextProps) => {
         </div>
             </RevealOnScroll>
               <RevealOnScroll delay={0.16} y={14}>
-            <div className="place-self-center pt-4">
+            <div className="pt-4 flex justify-center">
 
         <CircularTimer  duration={180} size={150} strokeWidth={5} stop />
             </div>
@@ -107,4 +107,3 @@ export const SelectContext = ({ onNext }: SelectContextProps) => {
     </div>
   );
 };
-

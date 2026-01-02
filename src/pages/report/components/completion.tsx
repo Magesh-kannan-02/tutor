@@ -41,7 +41,7 @@ export const Badge = ({ id, name, badgeType, description }: BadgeProps) => {
       <Lottie
         animationData={CompletionAnimation}
         loop={false}
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%", height: "100%",transform: "scale(1.15)" }}
         rendererSettings={{
           preserveAspectRatio: "xMidYMid slice",
         }}

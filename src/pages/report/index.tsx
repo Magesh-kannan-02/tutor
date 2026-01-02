@@ -125,7 +125,7 @@ export const Report = ({ homeRoute = "/", onComplete, buttonText }: ReportProps)
   }, [currentPageKey]);
   const handleClick = () => {
     if (currentPageKey === "badge") {
-      navigate("/onboarding/levelup");
+      navigate("/onboarding/levelup",);
       return;
     }
     // Always navigate to home on vocabulary step completion

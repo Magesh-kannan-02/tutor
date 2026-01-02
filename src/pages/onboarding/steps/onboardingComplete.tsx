@@ -50,7 +50,7 @@ export const OnboardingComplete = ({
       {/* Content (below Lottie) */}
       <div className="relative z-10 h-full mt-auto flex flex-col items-center justify-between gap-5 px-4">
         <div className="flex flex-col h-full items-center justify-between pb-8">
-          <div className="place-items-center h-full mt-16">
+          <div className="flex items-center flex-col h-full mt-16">
             <img src={TickImg} alt="tick" width={160} height={160} />
             <RevealOnScroll y={32}>
               <p className="text-body4 text-center text-content1-foreground leading-snug pt-[1.25rem]">

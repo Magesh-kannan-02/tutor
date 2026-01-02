@@ -2,7 +2,7 @@ import { BackgroundBlur, LeftArrowIcon } from "@/assets";
 import { RootLayout } from "@/layouts/withoutNavBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ChangeHelperComponents } from "./changeHelperComponents";
-import { Button } from "@/components";
+import { Button, RevealOnScroll } from "@/components";
 import { useAccountStore } from "@/store/accounts";
 import React from "react";
 import { Verification } from "@/pages/feedback/verification";
@@ -13,7 +13,8 @@ export const AccountChange = () => {
   const location = useLocation();
   const path = location.pathname;
   const params = path.split("/").filter(Boolean).pop();
-
+   console.log(params);
+   
   const {
     personalInfo,
     updatePersonalInfo,
@@ -147,17 +148,21 @@ export const AccountChange = () => {
         className="absolute -bottom-48 -right-96 pointer-events-none"
         size={600}
       />
-      <div className="flex items-center w-full flex-1 ">
-        <span onClick={() => navigate(-1)} className="cursor-pointer">
-          <LeftArrowIcon />
-        </span>
-        <p className="text-center mx-auto text-body4 font-bold text-content1-foreground">
-          {changeData[params || ""]?.title}
-        </p>
-      </div>
-      <div className="mt-[1.688rem] w-full h-full">
-        {changeData[params || ""]?.content}
-      </div>
+      <RevealOnScroll y={-12} delay={0.05}>
+        <div className="flex items-center w-full flex-1 ">
+          <span onClick={() => navigate(-1)} className="cursor-pointer">
+            <LeftArrowIcon />
+          </span>
+          <p className="text-center mx-auto text-body4 font-bold text-content1-foreground">
+            {changeData[params || ""]?.title}
+          </p>
+        </div>
+      </RevealOnScroll>
+      <RevealOnScroll delay={0.15} y={20}>
+        <div className="mt-[1.688rem] w-full h-full">
+          {changeData[params || ""]?.content}
+        </div>
+      </RevealOnScroll>
       <div className="mt-auto w-full">
         <Button
           onClick={handleButtonClick}

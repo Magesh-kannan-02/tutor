@@ -23,7 +23,7 @@ export const ReportNavbar = ({
     <div
       id={id}
       className={cn(
-        "relative flex items-center w-full  pb-1",
+        "relative flex items-center w-full h-[20px]  pb-1",
         baseclassName
       )}
       {...rest}

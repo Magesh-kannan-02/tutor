@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 export const Onboarding = () => {
   const navigate = useNavigate();
-  const { stepIndex, pageIndex, next, back, direction, getCurrentPage } =
+  const { stepIndex, pageIndex, next, direction, getCurrentPage } =
     useFlowStore();
   const { setProgress } = useOnboardingStore();
 
@@ -28,7 +28,7 @@ export const Onboarding = () => {
 
   const Back = () => {
     if (pageIndex > 0) {
-      back();
+        navigate(-1)
     } else {
       navigate("/select-test");
     }

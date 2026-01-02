@@ -7,6 +7,7 @@ import {
 import {
   ProfileAvatar,
   ProfileDetailsCard,
+  RevealOnScroll,
   RewardsDetailsCard,
 } from "@/components";
 import { LayoutWithNavBar } from "@/layouts/withNavBar";
@@ -55,26 +56,35 @@ export const Profile = () => {
         className="absolute -bottom-48 -right-96 pointer-events-none"
         size={600}
       />
-      <div className="flex flex-col mb-[5.5rem] pb-4 overflow-y-auto w-full h-full items-center gap-[1rem] px-[1rem]  mt-[1rem]">
-        <ProfileAvatar
-          size={130}
-          onChange={(file, preview) => {
-            console.log(file);
-            console.log(preview);
-          }}
-          value="https://th.bing.com/th/id/OIP.j11pt13ZectNBnErbzz1JAHaHa?w=209&h=209&c=7&r=0&o=5&cb=ucfimg2&dpr=1.3&pid=1.7&ucfimg=1"
-        />
-        <ProfileDetailsCard
-          name="Bala Vignesh"
-          joinedDate="02 Oct 2025"
-          streak="01 Day"
-          xp={120}
-          baseclassName=" mt-3"
-        />
-        <RewardsDetailsCard rewards={rewards} />
-        <div
-          onClick={() => navigate("/accounts")}
-          className="
+      <div className="flex flex-col mb-[5.5rem]  pb-4 overflow-y-auto w-full  h-full items-center gap-[1rem] px-[1rem]  mt-[1rem]">
+        <RevealOnScroll delay={0.05}>
+          <div className="flex justify-center">
+            <ProfileAvatar
+              size={130}
+              onChange={(file, preview) => {
+                console.log(file);
+                console.log(preview);
+              }}
+              value="https://th.bing.com/th/id/OIP.j11pt13ZectNBnErbzz1JAHaHa?w=209&h=209&c=7&r=0&o=5&cb=ucfimg2&dpr=1.3&pid=1.7&ucfimg=1"
+            />
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.12}>
+          <ProfileDetailsCard
+            name="Bala Vignesh"
+            joinedDate="02 Oct 2025"
+            streak="01 Day"
+            xp={120}
+            baseclassName=" mt-3"
+          />
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.18}>
+          <RewardsDetailsCard rewards={rewards} />
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.25}>
+          <div
+            onClick={() => navigate("/accounts")}
+            className="
     flex items-center justify-between w-full
     rounded-[0.625rem] bg-background-100/60 p-[1rem]
     cursor-pointer select-none
@@ -82,19 +92,21 @@ export const Profile = () => {
     hover:bg-background-100/80
     active:scale-[0.97] active:bg-background-100/60
   "
-        >
-          <div className="flex items-center gap-4">
-            <ProfileIcon fill="#FFFFFF" width={26} height={26} />
-            <p className="text-h5 font-semibold text-content1-foreground">
-              My Account
-            </p>
-          </div>
+          >
+            <div className="flex items-center gap-4">
+              <ProfileIcon fill="#FFFFFF" width={26} height={26} />
+              <p className="text-h5 font-semibold text-content1-foreground">
+                My Account
+              </p>
+            </div>
 
-          <ArrowRightIcon />
-        </div>
-        <div
-          onClick={() => navigate("/login", { replace: true })}
-          className="
+            <ArrowRightIcon />
+          </div>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.29}>
+          <div
+            onClick={() => navigate("/login", { replace: true })}
+            className="
     flex items-center w-full
     rounded-[0.625rem] bg-background-100/60 p-[1rem]
     cursor-pointer select-none
@@ -102,14 +114,15 @@ export const Profile = () => {
     hover:bg-background-100/60
     active:scale-[0.97] active:bg-background-100
   "
-        >
-          <div className="flex items-center gap-4">
-            <ExitIcon width={26} height={26} />
-            <p className="text-h5 font-semibold text-content1-foreground">
-              Log out
-            </p>
+          >
+            <div className="flex items-center gap-4">
+              <ExitIcon width={26} height={26} />
+              <p className="text-h5 font-semibold text-content1-foreground">
+                Log out
+              </p>
+            </div>
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </LayoutWithNavBar>
   );

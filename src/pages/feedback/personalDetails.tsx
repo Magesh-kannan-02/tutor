@@ -1,5 +1,5 @@
 import { Inputprompt } from "@/components";
-import { Content } from "./components/Content";
+import { Content } from "./components/contents";
 import { useAccountStore } from "@/store/accounts";
 
 export const PersonalDetails = () => {
