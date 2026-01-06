@@ -69,7 +69,7 @@ export const Practice = () => {
 
           {/* Orb Image */}
           <RevealOnScroll delay={0.2}>
-            <div className="relative h-20 place-self-center">
+            <div className="relative h-20 flex justify-center ">
               <img
                 src={aiCallImg}
                 alt="AI"
