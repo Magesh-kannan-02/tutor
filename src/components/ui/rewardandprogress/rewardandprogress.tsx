@@ -23,7 +23,7 @@ export const RewardAndProgress = ({
   const { streak, xp, streakGrid, xpHistory } = useHomeStore();
 
   const content = (
-    <div className="my-[1rem] flex flex-col gap-[1rem]">
+    <div className="my-[1rem] flex flex-col gap-[1rem] overflow-y-auto">
       {/* Tabs */}
       <div className="">
         <Switch

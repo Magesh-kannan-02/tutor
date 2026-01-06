@@ -12,6 +12,7 @@ import React from "react";
 import { FLOW } from "@/utils/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { CreatePassword } from "./createPassword";
+import { useNavigate } from "react-router-dom";
 // import { useAccountStore } from "@/store/accounts";
 
 export const FeedBack = () => {
@@ -55,7 +56,8 @@ export const FeedBack = () => {
     },
   };
 
-  const { stepIndex, pageIndex, next, back, direction } = useFlowStore();
+  const { stepIndex, pageIndex, next, direction } = useFlowStore();
+  const navigate = useNavigate();
   // const { validatePassword } = useAccountStore();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
@@ -111,7 +113,7 @@ export const FeedBack = () => {
           transition={{ duration: 0.2 }}
           className="w-full"
         >
-          <FeedbackHeader onBack={back} />
+          <FeedbackHeader onBack={()=>navigate(-1)} />
         </motion.div>
       </AnimatePresence>
       {/* content */}
