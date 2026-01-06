@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 
-import CompletionAnimation from "@/assets/lottie/Completion.json";
+import CompletionAnimation from "@/assets/lottie/completion.json";
 
 import { iconMapping } from "@/utils";
 interface BadgeProps {

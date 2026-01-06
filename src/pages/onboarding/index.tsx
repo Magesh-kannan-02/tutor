@@ -4,7 +4,7 @@ import { RootLayout } from "@/layouts/withoutNavBar";
 
 import { useFlowStore } from "@/store/flow";
 import { useOnboardingStore } from "@/store/onboarding";
-import { FLOW } from "@/utils/constants";
+import { FLOW, KEYS } from "@/utils/constants";
 import { ONBOARDING_COMPONENTS } from "./onboardingSteps";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -38,8 +38,10 @@ export const Onboarding = () => {
 
   // Sync progress to store
   useEffect(() => {
-    setProgress(progress);
-  }, [progress, setProgress]);
+    if (currentFlow.key === KEYS.ONBOARDING) {
+      setProgress(progress);
+    }
+  }, [progress, setProgress, currentFlow.key]);
 
   const currentPage = getCurrentPage() as keyof typeof ONBOARDING_COMPONENTS;
   const CurrentStep = ONBOARDING_COMPONENTS[currentPage] ?? null;

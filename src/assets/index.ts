@@ -22,4 +22,5 @@ export {LockIcon}  from './lockIcon'
 export {ExitIcon} from './exitIcon'
 export {RightArrowIcon} from './rightArrowIcon'
 export {LogoIcon} from './logoIcon'
+export {LineGraphBg} from './lineGraphBg'
 

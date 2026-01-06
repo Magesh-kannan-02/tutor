@@ -146,6 +146,7 @@ export interface OnboardingState {
   isCallDrawerOpen: boolean;
   callDrawerCloseIn: number;
   roadmapData: RoadmapData[];
+  roadmapMilestones: RoadmapMilestone[];
 }
 
 export interface OnboardingActions {
@@ -193,6 +194,7 @@ export interface OnboardingActions {
   tickCallDrawer: () => void;
 
   setRoadmapData: (data: RoadmapData[]) => void;
+  setRoadmapMilestones: (data: RoadmapMilestone[]) => void;
 }
 
 export interface RoadmapData {
@@ -200,6 +202,17 @@ export interface RoadmapData {
   title: string;
   description: string;
   icon: string;
+}
+
+export interface RoadmapMilestone {
+  id: string | number;
+
+  percentage?: string;
+  topLabel?: string;
+  bottomLabel?: string;
+  levelText?: string;
+  color?: string;
+  hidden?: boolean;
 }
 
 export type OnboardingStore = OnboardingState & OnboardingActions;
