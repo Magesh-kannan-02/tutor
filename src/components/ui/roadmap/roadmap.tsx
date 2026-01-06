@@ -57,8 +57,7 @@ ChartJS.register(
 
 export interface Milestone {
   id: string | number
-  x: number
-  y: number
+
   percentage?: string
   topLabel?: string
   bottomLabel?: string
@@ -107,45 +106,40 @@ const EMPTY_PLUGINS: Plugin<"line">[] = []
 const defaultMilestones: Milestone[] = [
   {
     id: "start-node",
-    x: 10,
-    y: 280,
+
     hidden: true,
   },
   {
     id: 1,
-    x: 130,
-    y: 250,
+
     percentage: "30%",
     topLabel: "Start",
     bottomLabel: "B1",
     levelText: "Intermediate",
-    color: "#FF8A00",
+    color: "#F2B61E",
     hidden: false,
   },
   {
     id: 2,
-    x: 245,
-    y: 175,
+
     percentage: "45%",
     topLabel: "Month 2",
-    color: "#FFD600",
+    color: "#E4D351",
     hidden: false,
   },
   {
     id: 3,
-    x: 340,
-    y: 100,
+
     percentage: "60%",
     topLabel: "Month 3",
     bottomLabel: "B2",
     levelText: "Upper – Intermediate",
-    color: "#B8FF5F",
+    color: "#A3FF6B", 
     hidden: false,
   },
   {
     id: "end-node",
-    x: 450,
-    y: 20,
+
     hidden: true,
   },
 ]
@@ -170,6 +164,14 @@ const roadmapLabelsPlugin = {
     const dashArray = styles.dashedLine?.dash || [4, 6]
     
     const fontFamily = styles.labels?.fontFamily || "'DM Sans', sans-serif"
+    const isDense = milestones.length > 8;
+
+    // Font sizes based on density AND screen real estate
+    // Making them quite small to fit 12 months in narrow width
+    const topLabelFont = isDense ? `500 9px ${fontFamily}` : `500 14px ${fontFamily}`;
+    const percentageFont = isDense ? `600 14px ${fontFamily}` : `600 25px ${fontFamily}`;
+    const bottomLabelFont = isDense ? `bold 9px ${fontFamily}` : `bold 14px ${fontFamily}`;
+    const levelTextFont = isDense ? `600 9px ${fontFamily}` : `600 14px ${fontFamily}`;
 
     meta.data.forEach((element: any, index: number) => {
       const milestone = milestones[index]
@@ -177,6 +179,12 @@ const roadmapLabelsPlugin = {
 
       const { x, y } = element.tooltipPosition()
       
+      const isOdd = index % 2 !== 0;
+      // Only stagger if dense. If sparse (few points), we have enough width, so align all same height.
+      const staggerOffsetTop = isDense && isOdd ? 50 : 0;
+      // Reduced stagger for bottom to keep them closer to points while still separating
+      const staggerOffsetBottom = isOdd ? (isDense ? 20 : 25) : 0;
+
       // Dashed vertical line (UP from point)
       ctx.save()
       ctx.beginPath()
@@ -184,8 +192,10 @@ const roadmapLabelsPlugin = {
       ctx.lineCap = "round"
       ctx.strokeStyle = dashColor
       ctx.lineWidth = dashWidth
+      // Extend dashed line if staggered up
+      const dashTopY = y - 65 - staggerOffsetTop;
       ctx.moveTo(x, y - 12) 
-      ctx.lineTo(x, y - 65) 
+      ctx.lineTo(x, dashTopY) 
       ctx.stroke()
       ctx.restore()
 
@@ -193,10 +203,12 @@ const roadmapLabelsPlugin = {
       if (milestone.topLabel) {
         const s = styles.labels?.topLabel
         ctx.save()
-        ctx.font = s?.font || `500 14px ${fontFamily}`
+        ctx.font = s?.font || topLabelFont
         ctx.fillStyle = s?.color || "rgba(255, 255, 255, 0.6)"
         ctx.textAlign = "center"
-        ctx.fillText(milestone.topLabel, x, y - (105 + (s?.offset || 0))) 
+        // Dynamic gap: Larger gap (100) for sparse data, Smaller gap (85) for dense data
+        const topLabelBaseOffset = isDense ? 90 : 100;
+        ctx.fillText(milestone.topLabel, x, y - (topLabelBaseOffset + (s?.offset || 0) + staggerOffsetTop)) 
         ctx.restore()
       }
 
@@ -204,10 +216,10 @@ const roadmapLabelsPlugin = {
       if (milestone.percentage) {
         const s = styles.labels?.percentage
         ctx.save()
-        ctx.font = s?.font || `600 25px ${fontFamily}`
+        ctx.font = s?.font || percentageFont
         ctx.fillStyle = s?.color || milestone.color || "#fff"
         ctx.textAlign = "center"
-        ctx.fillText(milestone.percentage, x, y - (75 + (s?.offset || 0)))
+        ctx.fillText(milestone.percentage, x, y - (75 + (s?.offset || 0) + staggerOffsetTop))
         ctx.restore()
       }
 
@@ -215,10 +227,11 @@ const roadmapLabelsPlugin = {
       if (milestone.bottomLabel) {
         const s = styles.labels?.bottomLabel
         ctx.save()
-        ctx.font = s?.font || `bold 14px ${fontFamily}`
+        ctx.font = s?.font || bottomLabelFont
         ctx.fillStyle = s?.color || "rgba(255, 255, 255, 0.5)"
         ctx.textAlign = "center"
-        ctx.fillText(milestone.bottomLabel, x, y + (40 + (s?.offset || 0)))
+        // Reduced base offset from 40 to 25 to be "near"
+        ctx.fillText(milestone.bottomLabel, x, y + (25 + (s?.offset || 0) + staggerOffsetBottom))
         ctx.restore()
       }
 
@@ -226,16 +239,17 @@ const roadmapLabelsPlugin = {
       if (milestone.levelText) {
         const s = styles.labels?.levelText
         ctx.save()
-        ctx.font = s?.font || `600 14px ${fontFamily}`
+        ctx.font = s?.font || levelTextFont
         ctx.fillStyle = s?.color || "rgba(255, 255, 255, 0.5)"
         ctx.textAlign = "center"
-         const baseOffset = 60 + (s?.offset || 0)
+         // Reduced base offset from 60 to 40
+         const baseOffset = 40 + (s?.offset || 0) + staggerOffsetBottom
         
         if (milestone.levelText.includes("Upper")) {
            const parts = milestone.levelText.split("–")
            if(parts.length > 1) {
               ctx.fillText(parts[0] + "–", x, y + baseOffset + 5)
-              ctx.fillText(parts[1], x, y + baseOffset + 25)
+              ctx.fillText(parts[1], x, y + baseOffset + 18) // tighter line height
            } else {
              ctx.fillText(milestone.levelText, x, y + baseOffset)
            }
@@ -263,30 +277,51 @@ export const Roadmap = ({
     if (dataProp) return dataProp;
 
     return {
-      labels: milestones.map((m) => m.x),
+      labels: milestones.map((_, i) => i),
       datasets: [
         {
           label: "Progress",
-          data: milestones.map((m) => ({ x: m.x, y: m.y })),
+          // Evenly distribute points across 0-1000 range
+          data: milestones.map((m, index) => {
+             const progress = milestones.length > 1 ? index / (milestones.length - 1) : 0.5
+             
+             let yVal = 0;
+             if (m.percentage) {
+                yVal = parseFloat(m.percentage);
+             } else if (index === 0 && milestones.length > 1 && milestones[1].percentage) {
+                // Start tail: slightly below first visible point
+                yVal = Math.max(0, parseFloat(milestones[1].percentage!) - 10);
+             } else if (index === milestones.length - 1 && milestones.length > 1 && milestones[index-1].percentage) {
+                // End tail: slightly above last visible point
+                yVal = Math.min(100, parseFloat(milestones[index-1].percentage!) + 5);
+             }
+
+             return {
+               x: progress * 1000, 
+               y: yVal
+             }
+          }),
           borderColor: (context: ScriptableContext<"line">) => {
              const chart = context.chart;
              const {ctx, chartArea} = chart;
-             if (!chartArea) return "#FFD600";
+             if (!chartArea) return "#C65200";
              
              const { left, right, top, bottom } = chartArea;
              if (!Number.isFinite(left) || !Number.isFinite(right) || !Number.isFinite(top) || !Number.isFinite(bottom)) {
-                return "#FFD600";
+                return "#C65200";
              }
 
              // Gradient
              try {
                const g = ctx.createLinearGradient(left, bottom, right, top)
-               g.addColorStop(0, "#FF8A00")
-               g.addColorStop(0.5, "#FFD600")
-               g.addColorStop(1, "#B8FF5F")
+               g.addColorStop(0, "#C65200")
+               g.addColorStop(0.28, "#F2B61E")
+               g.addColorStop(0.57, "#E4D351")
+               g.addColorStop(0.81, "#A3FF6B")
+               g.addColorStop(1, "#23B152")
                return g;
              } catch {
-               return "#FFD600";
+               return "#C65200";
              }
           },
           borderWidth: 6,
@@ -309,35 +344,42 @@ export const Roadmap = ({
           // Glow effect (custom properties handled by chart.js usually via simple spread, but explicitly listed here)
           shadowBlur: 10,
           shadowColor: "rgba(0,0,0,0.5)",
+          clip: 20,
         },
       ],
     }
   }, [milestones, styles, dataProp])
 
   const options = useMemo<ChartOptions<"line">>(() => {
+    // Calculate max percentage to adjust vertical scale dynamically
+    const maxPercent = milestones.reduce((max, m) => Math.max(max, parseFloat(m.percentage || "0")), 0)
+    // If fewer points, reduce the Y-scale max to make the graph visually steeper ("upwards more")
+    // Use 70 as absolute min (to avoid super zoom on flat 0-10 data), otherwise maxPercent + padding
+    const yScaleMax = milestones.length < 8 ? Math.max(maxPercent + 10, 70) : 110
+
     const defaultOptions: ChartOptions<"line"> = {
       responsive: true,
       maintainAspectRatio: false,
       layout: {
          padding: {
-            top: 50,
-            bottom: 50,
-            left: 20,
-            right: 20
+            top: 130, 
+            bottom: 0, 
+            left: 25,  
+            right: 40  
          }
       },
       scales: {
         x: {
           type: "linear",
           min: 0,
-          max: 500,
+          max: 1000, 
           display: false, 
         },
         y: {
           type: "linear",
           min: 0,
-          max: 400,
-          reverse: true,
+          max: yScaleMax, // Dynamic max
+          // reverse: false (default, 0 at bottom)
           display: false, 
         },
       },
@@ -363,14 +405,15 @@ export const Roadmap = ({
   const appliedPlugins = useMemo(() => [roadmapLabelsPlugin, ...pluginsProp], [pluginsProp])
 
   return (
-    <div style={{ width, height }} className={`relative p-4 select-none overflow-hidden ${className || ''}`}>
+    <div style={{ width, height }} className={`relative select-none ${className || ''}`}>
       {/* Side Labels - HTML overlay */}
-      <div className="absolute left-12 top-[65%] -translate-y-1/2 flex flex-col gap-0.5 pointer-events-none z-10">
+      {/* Side Labels - HTML overlay */}
+      <div className="absolute left-3 bottom-1/4 -translate-y-1/2 flex flex-col gap-0.5 pointer-events-none z-10 w-12">
         <span className="text-secondary-150 text-sm font-medium leading-tight">English</span>
         <span className="text-secondary-150 text-sm font-medium leading-tight">Score, %</span>
       </div>
 
-      <div className="absolute left-8 bottom-5 flex flex-col gap-0.5 pointer-events-none z-10">
+      <div className="absolute left-4 bottom-2 flex flex-col gap-0.5 pointer-events-none z-10">
         <span className="text-secondary-150 text-sm font-medium leading-tight">English</span>
         <span className="text-secondary-150 text-sm font-medium leading-tight">level</span>
       </div>

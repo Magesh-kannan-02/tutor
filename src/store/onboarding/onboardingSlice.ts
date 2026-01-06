@@ -213,6 +213,134 @@ const initialState: OnboardingState = {
       icon: ComputerImg,
     },
   ],
+  roadmapMilestones: [
+
+    {
+      id: "start-node",
+
+      hidden: true,
+    },
+    {
+      id: 1,
+
+      percentage: "25%",
+      topLabel: "Start",
+      bottomLabel: "A2",
+      levelText: "Pre-Intermediate",
+      color: "#F2B61E",
+      hidden: false,
+    },
+    {
+      id: 2,
+
+      percentage: "32%",
+      topLabel: "Month 1",
+      color: "#F2B61E",
+      hidden: false,
+    },
+    {
+      id: 3,
+
+      percentage: "38%",
+      topLabel: "Month 2",
+      color: "#EDC939",
+      hidden: false,
+    },
+    {
+      id: 4,
+
+      percentage: "45%",
+      topLabel: "Month 3",
+      bottomLabel: "B1",
+      levelText: "Intermediate",
+      color: "#E4D351",
+      hidden: false,
+    },
+    {
+      id: 5,
+
+      percentage: "52%",
+      topLabel: "Month 4",
+      color: "#E4D351",
+      hidden: false,
+    },
+    {
+      id: 6,
+
+      percentage: "58%",
+      topLabel: "Month 5",
+      color: "#D1E658",
+      hidden: false,
+    },
+    {
+      id: 7,
+
+      percentage: "65%",
+      topLabel: "Month 6",
+      bottomLabel: "B2",
+      levelText: "Upper-Intermediate",
+      color: "#BFF95F",
+      hidden: false,
+    },
+    {
+      id: 8,
+
+      percentage: "70%",
+      topLabel: "Month 7",
+      color: "#B1F062",
+      hidden: false,
+    },
+    {
+      id: 9,
+
+      percentage: "75%",
+      topLabel: "Month 8",
+      color: "#A3FF6B",
+      hidden: false,
+    },
+    {
+      id: 10,
+
+      percentage: "80%",
+      topLabel: "Month 9",
+      bottomLabel: "C1",
+      levelText: "Advanced",
+      color: "#85E65C",
+      hidden: false,
+    },
+    {
+      id: 11,
+
+      percentage: "85%",
+      topLabel: "Month 10",
+      color: "#66CC4E",
+      hidden: false,
+    },
+    {
+      id: 12,
+
+      percentage: "90%",
+      topLabel: "Month 11",
+      color: "#47B23F",
+      hidden: false,
+    },
+    {
+      id: 13,
+
+      percentage: "95%",
+      topLabel: "Month 12",
+      bottomLabel: "C2",
+      levelText: "Proficient",
+      color: "#23B152",
+      hidden: false,
+    },
+    {
+      id: "end-node",
+
+      hidden: true,
+    },
+
+  ]
 };
 
 /* ================= SLICE ================= */
@@ -381,4 +509,5 @@ closeCallDrawer: () =>
     }),
 
   setRoadmapData: (data) => set((s) => { s.roadmapData = data; }),
+  setRoadmapMilestones: (data) => set((s) => { s.roadmapMilestones = data; }),
 });

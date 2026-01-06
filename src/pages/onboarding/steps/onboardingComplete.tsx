@@ -1,5 +1,5 @@
 import TickImg from "@/assets/images/greenTick.png";
-import CompletionAnimation from "@/assets/lottie/Completion.json";
+import CompletionAnimation from "@/assets/lottie/completion.json";
 import { useFlowStore } from "@/store/flow";
 import { Button, BroadProgressBar, RevealOnScroll } from "@/components";
 import DiamondImg from "@/assets/images/diamond.png";
